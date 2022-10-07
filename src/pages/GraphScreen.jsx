@@ -6,9 +6,7 @@ const GraphScreen = () => {
   return (
     <>
       <StyledGraphScreen>
-        <div className='graph-inner-box'>
-          <GraphField />
-        </div>
+        <GraphField />
       </StyledGraphScreen>
     </>
   );
@@ -22,13 +20,6 @@ const StyledGraphScreen = styled.div`
   padding: 10px;
   background-image: url('https://cdn.pixabay.com/photo/2019/07/19/12/06/network-4348668_1280.png');
   background-size: cover;
-  .graph-inner-box {
-    width: 100%;
-    height: 100%;
-    padding: 20px;
-    border: 3px solid ${blue};
-    background-color: #ffffffd5;
-  }
 
   /* ============= ======= 1024px ============ ======== */
   @media screen and (max-width: 1024px) {

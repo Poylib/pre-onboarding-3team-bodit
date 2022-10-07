@@ -59,14 +59,6 @@ export default Graph;
 const GraphWrapper = styled.div`
   padding: 10px;
 
-  svg {
-    g {
-      text {
-        font-size: 40px;
-      }
-    }
-  }
-
   @media screen and (max-width: 479px) {
     height: 220px;
   }

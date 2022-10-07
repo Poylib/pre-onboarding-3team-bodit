@@ -57,12 +57,23 @@ const GraphField = () => {
   };
 
   return (
-    <>
+    <GraphFieldWrapper>
       <Graph data={tempData} unit={'Temperature (°C)'} color={'black'} />
       <Graph data={humidityData} unit={'Humidity (%)'} color={'red'} />
       <Graph data={pressureData} unit={'pressure (hPa)'} color={'aqua'} />
-    </>
+    </GraphFieldWrapper>
   );
 };
 
 export default GraphField;
+
+const GraphFieldWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  width: 100%;
+  height: 100%;
+  padding: 20px;
+  border: 3px solid ${blue};
+  background-color: #ffffffd5;
+`;
