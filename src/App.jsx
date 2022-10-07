@@ -1,14 +1,14 @@
 import { Route, Routes } from 'react-router-dom';
 import GlobalStyle from './GrobalStyle';
 import GraphScreen from './pages/GraphScreen';
-import SensorList from './pages/SensorList';
+import SensorPage from './pages/SensorPage';
 
 function App() {
   return (
     <>
       <GlobalStyle />
       <Routes>
-        <Route path='/' element={<SensorList />} />
+        <Route path='/' element={<SensorPage />} />
         <Route path='/graph' element={<GraphScreen />} />
       </Routes>
     </>
