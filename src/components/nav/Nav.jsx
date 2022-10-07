@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 import { blue, pearl } from '../../theme';
 import { AiOutlineMenu } from 'react-icons/ai';
+import Calendar from '../Calender/Calendar';
 
 // #7B9ACC (파란색)
 // #FCF6F5 (진주색)
@@ -16,7 +17,7 @@ const Nav = () => {
 
         {/* 로고밑콘텐츠영역 */}
         <div className='header-content-inner-box'>
-          {/* 캘린더 */}
+          <Calendar />
           <div className='calendar-inner-box'>
             <div className='calender-btn'>
               <span>2022년 10월 8일</span>

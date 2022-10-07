@@ -6,9 +6,7 @@ const GraphScreen = () => {
   return (
     <>
       <StyledGraphScreen>
-        <div className='graph-inner-box'>
-          <Calendar />
-        </div>
+        <div className='graph-inner-box'></div>
       </StyledGraphScreen>
     </>
   );
