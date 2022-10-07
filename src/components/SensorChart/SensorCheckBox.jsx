@@ -47,6 +47,15 @@ const SensorCheckBox = () => {
         </div>
       </div>
       <div className='margined'>
+        <span>Remain</span>
+        <div>
+          <input type='checkbox' />
+          전체
+          <input type='checkbox' />
+          1000이상
+        </div>
+      </div>
+      <div className='margined'>
         <span>F/W ver.</span>
         <div>
           <input type='checkbox' />
