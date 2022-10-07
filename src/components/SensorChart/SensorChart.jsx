@@ -3,7 +3,7 @@ import axios from 'axios';
 import { useEffect, useState } from 'react';
 
 import ChartRow from './ChartRow';
-import ChartHeader from './ChartHeader';
+// import ChartHeader from './ChartHeader';
 
 const SensorChart = () => {
   const [chartData, setChartData] = useState([]);
@@ -23,15 +23,34 @@ const SensorChart = () => {
   }, []);
   return (
     <SensorChartBlock>
-      <ChartHeader />
+      {/* <ChartHeader /> */}
       <table>
-        {chartData.map((sensorList, index) => {
-          return (
-            <>
-              <ChartRow key={`${sensorList.thingName}+${index}`} chartdata={sensorList} index={index} />
-            </>
-          );
-        })}
+        <thead className='fixed'>
+          <tr>
+            <td>#</td>
+            <td>Sensor ID</td>
+            <td>Bat.(%)</td>
+            <td>Connected at</td>
+            <td>Disconnected at</td>
+            <td>Reason</td>
+            <td>Card No.</td>
+            <td>Gateway</td>
+            <td>Raw sent</td>
+            <td>Remain</td>
+            <td>RSSI</td>
+            <td>F/W ver.</td>
+            <td>H/W ver.</td>
+          </tr>
+        </thead>
+        <tbody>
+          {chartData.map((sensorList, index) => {
+            return (
+              <>
+                <ChartRow key={`${sensorList.thingName}+${index}`} chartdata={sensorList} index={index} />
+              </>
+            );
+          })}
+        </tbody>
       </table>
     </SensorChartBlock>
   );
@@ -40,7 +59,13 @@ const SensorChart = () => {
 export default SensorChart;
 
 const SensorChartBlock = styled.div`
+  td {
+    text-align: center;
+  }
   .fixed {
-    position: fixed;
+    position: sticky;
+    top: 0;
+    overflow: hidden;
+    background-color: white;
   }
 `;
