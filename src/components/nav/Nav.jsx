@@ -17,10 +17,9 @@ const Nav = () => {
 
         {/* 로고밑콘텐츠영역 */}
         <div className='header-content-inner-box'>
-          <Calendar />
           <div className='calendar-inner-box'>
             <div className='calender-btn'>
-              <span>2022년 10월 8일</span>
+              <Calendar />
             </div>
           </div>
 

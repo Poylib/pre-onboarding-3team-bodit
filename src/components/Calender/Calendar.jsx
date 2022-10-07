@@ -1,25 +1,57 @@
 import styled from 'styled-components';
 import React, { useState } from 'react';
 import DatePicker from 'react-datepicker';
-import { ko } from 'date-fns/esm/locale';
 import 'react-datepicker/dist/react-datepicker.css';
-import { blue, pearl } from '../../theme';
+import calendarBlue from '../../assets/img/calendar/calendarBlue.png';
+import { blue } from '../../theme';
 
 const Calendar = () => {
-  const [startDate, setStartDate] = useState(new Date());
+  const [date, setDate] = useState(new Date());
   return (
-    <CalendarBlack>
-      <DatePicker locale={ko} dateFormat='yyyy-MM-dd' selected={startDate} onChange={date => setStartDate(date)} />
-    </CalendarBlack>
+    <CalendarBlock>
+      <img className='calendar-icon' src={calendarBlue} />
+      <DatePicker className='container' dateFormat='yyyy/MM/dd' selected={date} onChange={date => setDate(date)} />
+    </CalendarBlock>
   );
 };
-const CalendarBlack = styled.div`
+const CalendarBlock = styled.div`
+  display: flex;
+  width: 80%;
+  border: 1px solid ${blue};
+  border-radius: 5px;
+  background-color: transparent;
+
+  .calendar-icon {
+    width: 25px;
+    padding: 3px;
+  }
+  .container {
+    width: 100%;
+    border: none;
+    text-align: center;
+    font-size: 18px;
+    background-color: transparent;
+    color: ${blue};
+    font-weight: 600;
+  }
+
   .react-datepicker {
+    border: 2px solid ${blue};
+    border-radius: 5px;
+  }
+
+  .react-datepicker__navigation-icon::before {
+    border-color: ${blue};
+  }
+
+  .react-datepicker__triangle {
+    display: none;
+  }
+  .container react-datepicker-ignore-onclickoutside {
     border: none;
   }
-  .react-datepicker__month-container {
-    background-color: ${pearl};
-    border: 2px solid ${pearl};
+  *:focus {
+    outline: 0;
   }
   .react-datepicker__day-name {
     color: ${blue};
@@ -29,14 +61,14 @@ const CalendarBlack = styled.div`
     color: ${blue};
   }
   .react-datepicker__header {
-    background-color: ${pearl};
+    background-color: #ffffff;
     border-bottom: none;
   }
 
   .react-datepicker__day--selected {
     border-radius: 20px;
+    color: #ffffff;
     background-color: ${blue};
-    color: ${pearl};
   }
 `;
 
