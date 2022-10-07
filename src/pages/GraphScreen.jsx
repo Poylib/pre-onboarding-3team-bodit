@@ -2,13 +2,12 @@ import styled from 'styled-components';
 import Nav from '../components/nav/Nav';
 import { blue, pearl } from '../theme';
 
-
 const GraphScreen = () => {
   return (
     <>
       <StyledGraphScreen>
         <div className='graph-inner-box'>
-          div
+          <Calendar />
         </div>
       </StyledGraphScreen>
     </>
