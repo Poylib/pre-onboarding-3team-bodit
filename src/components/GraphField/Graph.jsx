@@ -7,7 +7,9 @@ const Graph = ({ data, unit, color }) => {
     <GraphWrapper>
       <ResponsiveLine
         colors={color}
-        theme={{ fontSize: '14px', textColor: blue }}
+        theme={{
+          textColor: blue,
+        }}
         data={data}
         margin={{ top: 10, right: 10, bottom: 70, left: 70 }}
         xScale={{ type: 'point' }}
@@ -55,6 +57,29 @@ const Graph = ({ data, unit, color }) => {
 export default Graph;
 
 const GraphWrapper = styled.div`
-  height: 300px;
   padding: 10px;
+
+  svg {
+    g {
+      text {
+        font-size: 40px;
+      }
+    }
+  }
+
+  @media screen and (max-width: 479px) {
+    height: 220px;
+  }
+
+  @media screen and (min-width: 480px) and (max-width: 767px) {
+    height: 240px;
+  }
+
+  @media screen and (min-width: 768px) and (max-width: 1023px) {
+    height: 260px;
+  }
+
+  @media screen and (min-width: 1024px) {
+    height: 280px;
+  }
 `;
