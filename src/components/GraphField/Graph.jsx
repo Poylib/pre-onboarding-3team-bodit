@@ -1,12 +1,9 @@
 import styled from 'styled-components';
 import { ResponsiveLine } from '@nivo/line';
-import data from '../../../public/test.json';
 
-// https://api.thingspeak.com/channels/1348864/feeds.json?api_key=6SKW0U97IPV2QQV9
-
-const Graph = () => (
+const Graph = ({ data }) => (
   <ResponsiveLine
-    data={data}
+    data={[data]}
     margin={{ top: 50, right: 110, bottom: 50, left: 60 }}
     xScale={{ type: 'point' }}
     yScale={{
