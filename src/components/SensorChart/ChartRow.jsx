@@ -44,5 +44,6 @@ const RowTr = styled.tr`
   td {
     text-align: center;
     vertical-align: middle;
+    padding: 0 20px 0 20px;
   }
 `;

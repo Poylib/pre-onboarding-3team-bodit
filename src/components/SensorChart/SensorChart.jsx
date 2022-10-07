@@ -63,9 +63,10 @@ const SensorChartBlock = styled.div`
     text-align: center;
   }
   .fixed {
+    position: -webkit-sticky;
     position: sticky;
     top: 0;
     overflow: hidden;
-    background-color: white;
+    background-color: #ffffff;
   }
 `;
