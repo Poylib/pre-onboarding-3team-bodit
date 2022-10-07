@@ -39,4 +39,8 @@ const SensorChart = () => {
 
 export default SensorChart;
 
-const SensorChartBlock = styled.div``;
+const SensorChartBlock = styled.div`
+  .fixed {
+    position: fixed;
+  }
+`;

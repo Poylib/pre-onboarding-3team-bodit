@@ -5,6 +5,7 @@ const ChartHeader = () => {
     <ChartHeaderBlock>
       <span>#</span>
       <span>Sensor ID</span>
+      <span>Bat.(%)</span>
       <span>Connected at</span>
       <span>Disconnected at</span>
       <span>Reason</span>
