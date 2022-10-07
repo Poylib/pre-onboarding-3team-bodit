@@ -8,6 +8,7 @@ import ChartRow from './ChartRow';
 const SensorChart = () => {
   const [chartData, setChartData] = useState([]);
   const [loading, setLoading] = useState(false);
+
   useEffect(() => {
     (async () => {
       setLoading(true);
