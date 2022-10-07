@@ -14,7 +14,7 @@ const GraphField = () => {
       try {
         const {
           data: { channel, feeds },
-        } = await axios.get(`https://api.thingspeak.com/channels/1348864/feeds.json?api_key=6SKW0U97IPV2QQV9&${makeDateRangeQuery()}&results=140&average=60&status=true`);
+        } = await axios.get(`https://api.thingspeak.com/channels/1348864/feeds.json?api_key=6SKW0U97IPV2QQV9&${makeDateRangeQuery()}&results=140&average=60`);
         setTempData([{ id: channel.field1, data: extract('field1', feeds) }]);
         setHumidityData([{ id: channel.field2, data: extract('field2', feeds) }]);
         setPressureData([{ id: channel.field3, data: extract('field3', feeds) }]);
@@ -46,40 +46,23 @@ const GraphField = () => {
     const date = new Date();
     const year = date.getFullYear();
     const month = ('0' + (date.getMonth() + 1)).slice(-2);
-    const day = ('0' + date.getDate()).slice(-2);
-    const dateStr = year + '-' + month + '-' + day;
+    const yesterDay = '0' + (date.getDate() - 1);
+    const day = '0' + date.getDate();
+    const dateStr = year + '-' + month + '-';
 
-    const hours = ('0' + date.getHours()).slice(-2);
-    const minutes = ('0' + date.getMinutes()).slice(-2);
-    const seconds = ('0' + date.getSeconds()).slice(-2);
-    const timeStr = hours + ':' + minutes + ':' + seconds;
+    const startDay = `start=${dateStr + yesterDay}`;
+    const endDay = `end=${dateStr + day}`;
 
-    const startTime = `start=${dateStr}%2000:00:00`;
-    const endTime = `end=${dateStr}%20${timeStr}`;
-    return startTime + '&' + endTime;
+    return startDay + '&' + endDay;
   };
 
   return (
     <>
-      <GraphWrapper>
-        <Graph data={tempData} unit={'Temperature (°C)'} color={'black'} />
-      </GraphWrapper>
-      <GraphWrapper>
-        <Graph data={humidityData} unit={'Humidity (%)'} color={'red'} />
-      </GraphWrapper>
-      <GraphWrapper>
-        <Graph data={pressureData} unit={'pressure (hPa)'} color={'aqua'} />
-      </GraphWrapper>
+      <Graph data={tempData} unit={'Temperature (°C)'} color={'black'} />
+      <Graph data={humidityData} unit={'Humidity (%)'} color={'red'} />
+      <Graph data={pressureData} unit={'pressure (hPa)'} color={'aqua'} />
     </>
   );
 };
 
 export default GraphField;
-
-const GraphWrapper = styled.div`
-  height: 500px;
-
-  text {
-    font-size: 20px;
-  }
-`;
