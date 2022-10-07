@@ -62,13 +62,13 @@ const GraphField = () => {
   return (
     <>
       <GraphWrapper>
-        <Graph data={tempData} />
+        <Graph data={tempData} unit={'Temperature (°C)'} color={'black'} />
       </GraphWrapper>
       <GraphWrapper>
-        <Graph data={humidityData} />
+        <Graph data={humidityData} unit={'Humidity (%)'} color={'red'} />
       </GraphWrapper>
       <GraphWrapper>
-        <Graph data={pressureData} />
+        <Graph data={pressureData} unit={'pressure (hPa)'} color={'aqua'} />
       </GraphWrapper>
     </>
   );
