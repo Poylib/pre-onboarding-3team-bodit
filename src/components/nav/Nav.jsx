@@ -1,6 +1,6 @@
+import { NavLink } from 'react-router-dom';
 import styled from 'styled-components';
 import { blue, pearl } from '../../theme';
-import { AiOutlineMenu } from 'react-icons/ai';
 
 // #7B9ACC (파란색)
 // #FCF6F5 (진주색)
@@ -23,8 +23,22 @@ const Nav = () => {
             </div>
           </div>
 
+          {/* 이동메뉴 */}
+          <ul className='menu-list-box'>
+            <li>
+              <NavLink to='/'>SensorList</NavLink>
+            </li>
+            <li>
+              <NavLink to='/graph'>GrphScreen</NavLink>
+            </li>
+          </ul>
+
           {/* Export */}
-          <span className='export-btn'>EXPROT</span>
+          <div className='export-btn-box'>
+            <NavLink to='/' className='export-btn'>
+              EXPROT
+            </NavLink>
+          </div>
         </div>
       </div>
     </NavBlock>
@@ -66,28 +80,65 @@ const NavBlock = styled.header`
       .calendar-inner-box {
         width: 100%;
         height: 10%;
-        margin-bottom: 465px;
         .calender-btn {
           display: flex;
           justify-content: center;
-          align-items: center;
+          align-items: flex-start;
           width: 100%;
           height: 100%;
           font: 25px/1 'apple';
           color: ${blue};
         }
       }
-      .export-btn {
+
+      /* 메뉴리스트박스 */
+      .menu-list-box {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        width: 100%;
+        height: 60%;
+        li {
+          width: 100%;
+          padding: 10px;
+          margin-bottom: 10px;
+          transition: all 0.5s;
+          &:hover{
+            background: ${blue};
+          }
+          a {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+            height: 50px;
+            font: 30px/1 'apple';
+            color: ${blue};
+            transition: all 0.5s;
+            &:hover{
+              color: ${pearl};
+            }
+          }
+        }
+      }
+
+      .export-btn-box {
         display: flex;
         justify-content: center;
         align-items: center;
-        width: 200px;
-        height: 50px;
-        background: ${blue};
-        border-radius: 50px;
-        font: bold 25px/1 'Pacifico';
-        color: ${pearl};
-        cursor: pointer;
+        width: 100%;
+        .export-btn {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          width: 200px;
+          height: 50px;
+          background: ${blue};
+          border-radius: 50px;
+          font: bold 25px/1 'Pacifico';
+          color: ${pearl};
+          cursor: pointer;
+        }
       }
     }
   }
@@ -103,19 +154,44 @@ const NavBlock = styled.header`
 
       /* 로고밑콘텐츠영역 */
       .header-content-inner-box {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        width: 100%;
+        height: 100%;
         /* 캘린더박스 */
         .calendar-inner-box {
-          margin-bottom: 590px;
+          width: 100%;
+          height: 10%;
           .calender-btn {
-            font: 22px/1 'apple';
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            width: 100%;
+            height: 100%;
+            font: 20px/1 'apple';
+            color: ${blue};
           }
         }
-        .export-btn {
-          position: absolute;
-          bottom: 50px;
-          width: 150px;
-          height: 40px;
-          font: bold 20px/1 'Pacifico';
+
+        /* export 박스 */
+        .export-btn-box {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          width: 100%;
+          .export-btn {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 150px;
+            height: 40px;
+            background: ${blue};
+            border-radius: 50px;
+            font: bold 18px/1 'Pacifico';
+            color: ${pearl};
+            cursor: pointer;
+          }
         }
       }
     }
@@ -153,7 +229,7 @@ const NavBlock = styled.header`
           align-items: center;
           width: 100%;
           height: 100%;
-          margin-top: 35px;
+          margin-top: 35px 0px 50px 0px;
           .calender-btn {
             display: flex;
             justify-content: center;
@@ -169,6 +245,7 @@ const NavBlock = styled.header`
           align-items: center;
           width: 200px;
           height: 50px;
+          margin-bottom: 10px;
           background: ${pearl};
           border-radius: 50px;
           font: bold 25px/1 'Pacifico';

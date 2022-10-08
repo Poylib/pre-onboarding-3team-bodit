@@ -1,14 +1,16 @@
-import styled from 'styled-components';
-import Nav from '../components/nav/Nav';
 import { blue, pearl } from '../theme';
-
-
+import styled from 'styled-components';
 const GraphScreen = () => {
   return (
     <>
       <StyledGraphScreen>
         <div className='graph-inner-box'>
-          div
+          {/* 기온박스 */}
+          <div className='temperatures-box'>1</div>
+          {/* 습도박스 */}
+          <div className='humidity-box'>2</div>
+          {/* 기압박스 */}
+          <div className='atmospheric-pressure-box'>3</div>
         </div>
       </StyledGraphScreen>
     </>
@@ -24,11 +26,32 @@ const StyledGraphScreen = styled.div`
   background-image: url('https://cdn.pixabay.com/photo/2019/07/19/12/06/network-4348668_1280.png');
   background-size: cover;
   .graph-inner-box {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
     width: 100%;
     height: 100%;
     padding: 20px;
     border: 3px solid ${blue};
     background-color: #ffffffd5;
+    .temperatures-box {
+      width: 100%;
+      height: 300px;
+      margin-bottom: 50px;
+      background: #777;
+    }
+    .humidity-box {
+      width: 100%;
+      height: 300px;
+      margin-bottom: 50px;
+      background: #777;
+    }
+    .atmospheric-pressure-box {
+      width: 100%;
+      height: 300px;
+      background: #777;
+    }
   }
 
   /* ============= ======= 1024px ============ ======== */
