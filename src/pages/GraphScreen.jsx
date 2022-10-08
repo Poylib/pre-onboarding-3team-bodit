@@ -1,6 +1,5 @@
 import styled from 'styled-components';
 import GraphField from '../components/GraphField/GraphField';
-import { blue, pearl } from '../theme';
 
 const GraphScreen = () => {
   return (

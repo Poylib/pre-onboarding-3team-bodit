@@ -2,6 +2,7 @@ import axios from 'axios';
 import { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import Graph from './Graph';
+import { blue } from '../../theme';
 
 const GraphField = () => {
   const [tempData, setTempData] = useState([]);
