@@ -1,8 +1,10 @@
 import { blue, pearl } from '../theme';
+import { Fade } from 'react-reveal';
 import styled from 'styled-components';
 const GraphScreen = () => {
   return (
     <>
+    <Fade >
       <StyledGraphScreen>
         <div className='graph-inner-box'>
           {/* 기온박스 */}
@@ -13,6 +15,7 @@ const GraphScreen = () => {
           <div className='atmospheric-pressure-box'>3</div>
         </div>
       </StyledGraphScreen>
+      </Fade>
     </>
   );
 };

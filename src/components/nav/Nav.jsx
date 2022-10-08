@@ -1,3 +1,4 @@
+import { Fade } from 'react-reveal';
 import { NavLink } from 'react-router-dom';
 import styled from 'styled-components';
 import { blue, pearl } from '../../theme';
@@ -8,40 +9,42 @@ import { blue, pearl } from '../../theme';
 const Nav = () => {
   return (
     <NavBlock>
-      {/* 로고영역박스 */}
-      <div className='header-inner-box'>
-        <div className='header-logo-box'>
-          <h1 className='logo-title'>BoDit!</h1>
-        </div>
+        <Fade>
+        {/* 로고영역박스 */}
+        <div className='header-inner-box'>
+          <div className='header-logo-box'>
+            <h1 className='logo-title'>BoDit!</h1>
+          </div>
 
-        {/* 로고밑콘텐츠영역 */}
-        <div className='header-content-inner-box'>
-          {/* 캘린더 */}
-          <div className='calendar-inner-box'>
-            <div className='calender-btn'>
-              <span>2022년 10월 8일</span>
+          {/* 로고밑콘텐츠영역 */}
+          <div className='header-content-inner-box'>
+            {/* 캘린더 */}
+            <div className='calendar-inner-box'>
+              <div className='calender-btn'>
+                <span>2022년 10월 8일</span>
+              </div>
+            </div>
+
+            {/* 이동메뉴 */}
+            <ul className='menu-list-box'>
+              <li>
+                <NavLink to='/'>SensorList</NavLink>
+              </li>
+              <li>
+                <NavLink to='/graph'>GrphScreen</NavLink>
+              </li>
+            </ul>
+
+            {/* Export */}
+            <div className='export-btn-box'>
+              <NavLink to='/' className='export-btn'>
+                EXPROT
+              </NavLink>
             </div>
           </div>
-
-          {/* 이동메뉴 */}
-          <ul className='menu-list-box'>
-            <li>
-              <NavLink to='/'>SensorList</NavLink>
-            </li>
-            <li>
-              <NavLink to='/graph'>GrphScreen</NavLink>
-            </li>
-          </ul>
-
-          {/* Export */}
-          <div className='export-btn-box'>
-            <NavLink to='/' className='export-btn'>
-              EXPROT
-            </NavLink>
-          </div>
         </div>
-      </div>
-    </NavBlock>
+    </Fade>
+      </NavBlock>
   );
 };
 
@@ -56,6 +59,7 @@ const NavBlock = styled.header`
     left: 0;
     width: 20%;
     height: 100vh;
+    z-index: 10;
     /* 로고영역박스 */
     .header-logo-box {
       width: 100%;
@@ -103,7 +107,7 @@ const NavBlock = styled.header`
           padding: 10px;
           margin-bottom: 10px;
           transition: all 0.5s;
-          &:hover{
+          &:hover {
             background: ${blue};
           }
           a {
@@ -115,7 +119,7 @@ const NavBlock = styled.header`
             font: 30px/1 'apple';
             color: ${blue};
             transition: all 0.5s;
-            &:hover{
+            c &:hover {
               color: ${pearl};
             }
           }
