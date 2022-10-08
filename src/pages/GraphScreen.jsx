@@ -3,6 +3,7 @@ import { Fade } from 'react-reveal';
 import styled from 'styled-components';
 import GraphField from '../components/GraphField/GraphField';
 
+
 const GraphScreen = () => {
   return (
     <>

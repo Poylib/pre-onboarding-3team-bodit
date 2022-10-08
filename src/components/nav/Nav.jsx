@@ -2,6 +2,8 @@ import { Fade } from 'react-reveal';
 import { NavLink } from 'react-router-dom';
 import styled from 'styled-components';
 import { blue, pearl } from '../../theme';
+import Calendar from '../Calender/Calendar';
+
 
 // #7B9ACC (파란색)
 // #FCF6F5 (진주색)
@@ -16,13 +18,12 @@ const Nav = () => {
             <h1 className='logo-title'>BoDit!</h1>
           </div>
 
-          {/* 로고밑콘텐츠영역 */}
-          <div className='header-content-inner-box'>
-            {/* 캘린더 */}
-            <div className='calendar-inner-box'>
-              <div className='calender-btn'>
-                <span>2022년 10월 8일</span>
-              </div>
+
+        {/* 로고밑콘텐츠영역 */}
+        <div className='header-content-inner-box'>
+          <div className='calendar-inner-box'>
+            <div className='calender-btn'>
+              <Calendar />
             </div>
 
             {/* 이동메뉴 */}
@@ -42,6 +43,7 @@ const Nav = () => {
               </NavLink>
             </div>
           </div>
+        </div>
         </div>
     </Fade>
       </NavBlock>
