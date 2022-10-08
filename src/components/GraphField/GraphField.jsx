@@ -8,7 +8,8 @@ const GraphField = () => {
   const [tempData, setTempData] = useState([]);
   const [humidityData, setHumidityData] = useState([]);
   const [pressureData, setPressureData] = useState([]);
-  const [targetTime, setTargetTime] = useState('');
+  const [targetRange, setTargetRange] = useState([]);
+  const [targetTimeQuery, setTargetTimeQuery] = useState('');
 
   useEffect(() => {
     (async () => {
@@ -17,9 +18,10 @@ const GraphField = () => {
         const {
           data: { channel, feeds },
         } = await axios.get(
-          targetTime ? `https://api.thingspeak.com/channels/1348864/feeds.json?api_key=6SKW0U97IPV2QQV9&${targetTime}` : `https://api.thingspeak.com/channels/1348864/feeds.json?api_key=6SKW0U97IPV2QQV9&${makeDateRangeQuery()}&results=140&average=60`
+          targetTimeQuery
+            ? `https://api.thingspeak.com/channels/1348864/feeds.json?api_key=6SKW0U97IPV2QQV9&${targetTimeQuery}`
+            : `https://api.thingspeak.com/channels/1348864/feeds.json?api_key=6SKW0U97IPV2QQV9&${makeDateRangeQuery()}&results=140&average=60`
         );
-
         setTempData([{ id: channel.field1, data: extract('field1', feeds) }]);
         setHumidityData([{ id: channel.field2, data: extract('field2', feeds) }]);
         setPressureData([{ id: channel.field3, data: extract('field3', feeds) }]);
@@ -29,7 +31,7 @@ const GraphField = () => {
         // loading
       }
     })();
-  }, [targetTime]);
+  }, [targetTimeQuery]);
 
   const extract = (graphType, allData) => {
     let graphValue = [];
@@ -62,24 +64,33 @@ const GraphField = () => {
   };
 
   const getTargetTime = time => {
-    const date = makeDateRangeQuery().split('&')[0].split('=')[1];
     const targetHour = Number(time.split(':')[0]);
-    const targetMin = time.split(':')[1] + ':00';
-    let startTime = '';
+    const targetMin = time.split(':')[1];
+    let startTime;
 
-    targetHour < 3 ? (startTime = '2000:00:00') : (startTime = '20' + ('0' + (targetHour - 3)).slice(-2) + ':' + targetMin);
-    const endTime = '20' + ('0' + (targetHour + 3)).slice(-2) + ':' + targetMin;
+    targetHour < 3 ? (startTime = '00:00') : (startTime = ('0' + (targetHour - 3)).slice(-2) + ':' + targetMin);
+    const endTime = ('0' + (targetHour + 3)).slice(-2) + ':' + targetMin;
 
-    const startQuery = `start=${date}%${startTime}`;
-    const endQuery = `end=${date}%${endTime}`;
-    setTargetTime([startQuery, endQuery].join('&'));
+    setTargetRange([startTime, endTime]);
   };
 
-  console.log(`https://api.thingspeak.com/channels/1348864/feeds.json?api_key=6SKW0U97IPV2QQV9&${targetTime}&results=100`);
+  const makeTargetQuery = () => {
+    const date = makeDateRangeQuery().split('&')[0].split('=')[1];
+
+    const startQuery = `start=${date}%20${targetRange[0]}:00`;
+    const endQuery = `end=${date}%20${targetRange[1]}:00`;
+
+    setTargetTimeQuery([startQuery, endQuery].join('&'));
+  };
 
   return (
     <GraphFieldWrapper>
-      <div className='time-box'></div>
+      <TargetTime>
+        <span>
+          {targetRange[0]}~{targetRange[1]}
+        </span>
+        <button onClick={makeTargetQuery}>적용하기</button>
+      </TargetTime>
       <Graph data={tempData} unit={'Temperature (°C)'} color={'black'} getTargetTime={getTargetTime} />
       <Graph data={humidityData} unit={'Humidity (%)'} color={'red'} getTargetTime={getTargetTime} />
       <Graph data={pressureData} unit={'pressure (hPa)'} color={'aqua'} getTargetTime={getTargetTime} />
@@ -88,6 +99,7 @@ const GraphField = () => {
 };
 
 export default GraphField;
+const TargetTime = styled.div``;
 
 const GraphFieldWrapper = styled.div`
   display: flex;
