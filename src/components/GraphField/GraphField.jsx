@@ -8,6 +8,7 @@ const GraphField = () => {
   const [tempData, setTempData] = useState([]);
   const [humidityData, setHumidityData] = useState([]);
   const [pressureData, setPressureData] = useState([]);
+  const [targetTime, setTargetTime] = useState('');
 
   useEffect(() => {
     (async () => {
@@ -15,7 +16,10 @@ const GraphField = () => {
       try {
         const {
           data: { channel, feeds },
-        } = await axios.get(`https://api.thingspeak.com/channels/1348864/feeds.json?api_key=6SKW0U97IPV2QQV9&${makeDateRangeQuery()}&results=140&average=60`);
+        } = await axios.get(
+          targetTime ? `https://api.thingspeak.com/channels/1348864/feeds.json?api_key=6SKW0U97IPV2QQV9&${targetTime}` : `https://api.thingspeak.com/channels/1348864/feeds.json?api_key=6SKW0U97IPV2QQV9&${makeDateRangeQuery()}&results=140&average=60`
+        );
+
         setTempData([{ id: channel.field1, data: extract('field1', feeds) }]);
         setHumidityData([{ id: channel.field2, data: extract('field2', feeds) }]);
         setPressureData([{ id: channel.field3, data: extract('field3', feeds) }]);
@@ -25,7 +29,7 @@ const GraphField = () => {
         // loading
       }
     })();
-  }, []);
+  }, [targetTime]);
 
   const extract = (graphType, allData) => {
     let graphValue = [];
@@ -58,6 +62,7 @@ const GraphField = () => {
   };
 
   const getTargetTime = time => {
+    const date = makeDateRangeQuery().split('&')[0].split('=')[1];
     const targetHour = Number(time.split(':')[0]);
     const targetMin = time.split(':')[1] + ':00';
     let startTime = '';
@@ -65,10 +70,12 @@ const GraphField = () => {
     targetHour < 3 ? (startTime = '2000:00:00') : (startTime = '20' + ('0' + (targetHour - 3)).slice(-2) + ':' + targetMin);
     const endTime = '20' + ('0' + (targetHour + 3)).slice(-2) + ':' + targetMin;
 
-    const startQuery = `${makeDateRangeQuery().split('&')[0]}%${startTime}`;
-    const endQuery = `${makeDateRangeQuery().split('&')[1]}%${endTime}`;
-    return [startQuery, endQuery].join('&');
+    const startQuery = `start=${date}%${startTime}`;
+    const endQuery = `end=${date}%${endTime}`;
+    setTargetTime([startQuery, endQuery].join('&'));
   };
+
+  console.log(`https://api.thingspeak.com/channels/1348864/feeds.json?api_key=6SKW0U97IPV2QQV9&${targetTime}&results=100`);
 
   return (
     <GraphFieldWrapper>
