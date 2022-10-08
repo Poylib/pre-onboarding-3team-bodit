@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 import calendarBlue from '../../assets/img/calendar/calendarBlue.png';
-import { blue } from '../../theme';
+import { blue, pearl } from '../../theme';
 
 const Calendar = () => {
   const [date, setDate] = useState(new Date());
@@ -14,6 +14,9 @@ const Calendar = () => {
     </CalendarBlock>
   );
 };
+
+export default Calendar;
+
 const CalendarBlock = styled.div`
   display: flex;
   width: 70%;
@@ -81,7 +84,7 @@ const CalendarBlock = styled.div`
     width: 70%;
     padding: 3px;
     background-color: transparent;
-    border: 1px solid #ffffff;
+    border: 1px solid ${pearl};
     border-radius: 5px;
     .container {
       width: 100%;
@@ -89,14 +92,13 @@ const CalendarBlock = styled.div`
       text-align: center;
       font-size: 20px;
       background-color: transparent;
-      color: #ffffff;
+      color: ${pearl};
       font-weight: 600;
     }
     .calendar-icon {
       width: 30px;
-      filter: opacity(0.4) drop-shadow(0 0 0 #fff);
+      padding: 3px;
+      filter: brightness(0) invert(1);
     }
   } ;
 `;
-
-export default Calendar;
