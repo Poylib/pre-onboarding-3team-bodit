@@ -47,8 +47,8 @@ const GraphField = () => {
     const date = new Date();
     const year = date.getFullYear();
     const month = ('0' + (date.getMonth() + 1)).slice(-2);
-    const yesterDay = '0' + (date.getDate() - 1);
-    const day = '0' + date.getDate();
+    const yesterDay = ('0' + (date.getDate() - 1)).slice(-2);
+    const day = ('0' + date.getDate()).slice(-2);
     const dateStr = year + '-' + month + '-';
 
     const startDay = `start=${dateStr + yesterDay}`;
@@ -57,11 +57,25 @@ const GraphField = () => {
     return startDay + '&' + endDay;
   };
 
+  const getTargetTime = time => {
+    const targetHour = Number(time.split(':')[0]);
+    const targetMin = time.split(':')[1] + ':00';
+    let startTime = '';
+
+    targetHour < 3 ? (startTime = '2000:00:00') : (startTime = '20' + ('0' + (targetHour - 3)).slice(-2) + ':' + targetMin);
+    const endTime = '20' + ('0' + (targetHour + 3)).slice(-2) + ':' + targetMin;
+
+    const startQuery = `${makeDateRangeQuery().split('&')[0]}%${startTime}`;
+    const endQuery = `${makeDateRangeQuery().split('&')[1]}%${endTime}`;
+    return [startQuery, endQuery].join('&');
+  };
+
   return (
     <GraphFieldWrapper>
-      <Graph data={tempData} unit={'Temperature (°C)'} color={'black'} />
-      <Graph data={humidityData} unit={'Humidity (%)'} color={'red'} />
-      <Graph data={pressureData} unit={'pressure (hPa)'} color={'aqua'} />
+      <div className='time-box'></div>
+      <Graph data={tempData} unit={'Temperature (°C)'} color={'black'} getTargetTime={getTargetTime} />
+      <Graph data={humidityData} unit={'Humidity (%)'} color={'red'} getTargetTime={getTargetTime} />
+      <Graph data={pressureData} unit={'pressure (hPa)'} color={'aqua'} getTargetTime={getTargetTime} />
     </GraphFieldWrapper>
   );
 };
