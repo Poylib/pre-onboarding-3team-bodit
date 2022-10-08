@@ -78,18 +78,15 @@ const GraphFieldWrapper = styled.div`
   border: 3px solid ${blue};
   background-color: #ffffffd5;
 
-
-
-  
   @media screen and (max-width: 1024px) {
     display: flex;
-  flex-direction: column;
-  justify-content: space-around;
-  width: 100%;
-  height: 100%;
-  padding: 9%  0px  9%;
-  border: 3px solid ${blue};
-  background-color: #ffffffd5;
+    flex-direction: column;
+    justify-content: space-around;
+    width: 100%;
+    height: 100%;
+    padding: 9% 0px 9%;
+    border: 3px solid ${blue};
+    background-color: #ffffffd5;
   }
   @media screen and (max-width: 890px) {
   }
