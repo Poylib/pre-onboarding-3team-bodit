@@ -10,7 +10,7 @@ const SensorChart = () => {
   const [loading, setLoading] = useState(false);
   const [optionCheck, setOptionCheck] = useState('');
   const [ascending, setAscending] = useState(true);
-
+  let originData = [];
   useEffect(() => {
     (async () => {
       setLoading(true);
@@ -26,23 +26,76 @@ const SensorChart = () => {
   }, []);
 
   useEffect(() => {
-    setAscending(!ascending);
-    if (optionCheck) console.log(optionCheck);
+    if (optionCheck === 'thingName') {
+      setOptionCheck('');
+      setAscending(!ascending);
+      if (ascending) {
+        setChartData(chartData.sort((a, b) => a.thingName.split('-')[1] - b.thingName.split('-')[1]));
+      } else {
+        setChartData(chartData.sort((a, b) => b.thingName.split('-')[1] - a.thingName.split('-')[1]));
+      }
+    } else if (optionCheck === 'batLvl') {
+      setOptionCheck('');
+      setAscending(!ascending);
+      if (ascending) {
+        setChartData(chartData.sort((a, b) => a.shadow.batLvl - b.shadow.batLvl));
+      } else {
+        setChartData(chartData.sort((a, b) => b.shadow.batLvl - a.shadow.batLvl));
+      }
+    } else if (optionCheck === 'connCardNum') {
+      setOptionCheck('');
+      setAscending(!ascending);
+      if (ascending) {
+        setChartData(chartData.sort((a, b) => a.shadow.connCardNum - b.shadow.connCardNum));
+      } else {
+        setChartData(chartData.sort((a, b) => b.shadow.connCardNum - a.shadow.connCardNum));
+      }
+    } else if (optionCheck === 'connGW') {
+      setOptionCheck('');
+      setAscending(!ascending);
+      if (ascending) {
+        setChartData(chartData.sort((a, b) => a.shadow.connGW.split('-')[1] - b.shadow.connGW.split('-')[1]));
+      } else {
+        setChartData(chartData.sort((a, b) => b.shadow.connGW.split('-')[1] - a.shadow.connGW.split('-')[1]));
+      }
+    } else if (optionCheck === 'rawSentCnt') {
+      setOptionCheck('');
+      setAscending(!ascending);
+      if (ascending) {
+        setChartData(chartData.sort((a, b) => a.shadow.rawSentCnt - b.shadow.rawSentCnt));
+      } else {
+        setChartData(chartData.sort((a, b) => b.shadow.rawSentCnt - a.shadow.rawSentCnt));
+      }
+    } else if (optionCheck === 'remainData') {
+      setOptionCheck('');
+      setAscending(!ascending);
+      if (ascending) {
+        setChartData(chartData.sort((a, b) => a.shadow.remainData - b.shadow.remainData));
+      } else {
+        setChartData(chartData.sort((a, b) => b.shadow.remainData - a.shadow.remainData));
+      }
+    } else if (optionCheck === 'rssi') {
+      setOptionCheck('');
+      setAscending(!ascending);
+      if (ascending) {
+        setChartData(chartData.sort((a, b) => a.shadow.rssi - b.shadow.rssi));
+      } else {
+        setChartData(chartData.sort((a, b) => b.shadow.rssi - a.shadow.rssi));
+      }
+    } else {
+      console.log(originData);
+    }
   }, [optionCheck]);
-
   return (
     <SensorChartBlock>
       <table>
         <thead className='fixed'>
           <tr>
-            <td>
-              <span>#</span>
-            </td>
             {header.map((category, index) => {
               return (
-                <td key={`${category.id + index}`} onClick={() => setOptionCheck(category.id)}>
+                <td className='headline' key={`${category.id + index}`} onClick={() => setOptionCheck(category.id)}>
                   <span>{category.name}</span>
-                  <BsFillTriangleFill />
+                  {category.sort ? '' : <BsFillTriangleFill />}
                 </td>
               );
             })}
@@ -69,8 +122,15 @@ const SensorChartBlock = styled.div`
     position: sticky;
     top: 0;
     overflow: hidden;
+    line-height: 30px;
+    height: 30px;
     background-color: #ffffff;
-  }
-  svg {
+    .headline {
+      font-size: 8px;
+      span {
+        font-size: 16px;
+        margin-right: 5px;
+      }
+    }
   }
 `;

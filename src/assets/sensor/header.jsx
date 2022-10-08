@@ -1,42 +1,47 @@
 export const header = [
   {
-    id: '',
+    id: 'index',
+    name: '#',
+    sort: true,
+  },
+  {
+    id: 'thingName',
     name: 'Sensor ID',
   },
   {
-    id: '',
+    id: 'batLvl',
     name: 'Bat.(%)',
   },
   {
-    id: '',
+    id: 'connAt',
     name: 'Connected at',
   },
   {
-    id: '',
+    id: 'disconnAt',
     name: 'Disconnected at',
   },
   {
-    id: '',
+    id: 'disconnReason',
     name: 'Reason',
   },
   {
-    id: '',
+    id: 'connCardNum',
     name: 'Card No.',
   },
   {
-    id: '',
+    id: 'connGW',
     name: 'Gateway',
   },
   {
-    id: '',
+    id: 'rawSentCnt',
     name: 'Raw sent',
   },
   {
-    id: '',
+    id: 'remainData',
     name: 'Remain',
   },
   {
-    id: '',
+    id: 'rssi',
     name: 'RSSI',
   },
   {
