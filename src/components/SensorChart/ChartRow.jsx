@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import { useState, useEffect } from 'react';
+import { pearl } from '../../theme';
 
 const ChartRow = props => {
   const { chartdata, index } = props;
@@ -27,8 +28,8 @@ const ChartRow = props => {
   return (
     <RowTr>
       <th>{index}</th>
-      {rowArray.map(rowdata => {
-        return <td>{rowdata}</td>;
+      {rowArray.map((rowdata, index) => {
+        return <td key={`${rowArray[0] + index}`}>{rowdata}</td>;
       })}
     </RowTr>
   );
@@ -38,12 +39,16 @@ export default ChartRow;
 
 const RowTr = styled.tr`
   border: none;
+  line-height: 30px;
   border-top: 1px solid #808080;
   border-bottom: 1px solid #808080;
-  background-color: lightcoral; /* 규격테스트용 */
+  background-color: ${pearl};
   td {
     text-align: center;
     vertical-align: middle;
     padding: 0 20px 0 20px;
+  }
+  &:hover {
+    background-color: grey;
   }
 `;

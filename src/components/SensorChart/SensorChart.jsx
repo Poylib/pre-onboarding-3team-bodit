@@ -1,13 +1,16 @@
 import styled from 'styled-components';
 import axios from 'axios';
 import { useEffect, useState } from 'react';
-
+import { BsFillTriangleFill } from 'react-icons/bs';
+import { header } from '../../assets/sensor/header';
 import ChartRow from './ChartRow';
-// import ChartHeader from './ChartHeader';
 
 const SensorChart = () => {
   const [chartData, setChartData] = useState([]);
   const [loading, setLoading] = useState(false);
+  const [optionCheck, setOptionCheck] = useState('');
+  const [ascending, setAscending] = useState(true);
+  let originData = [];
   useEffect(() => {
     (async () => {
       setLoading(true);
@@ -21,34 +24,86 @@ const SensorChart = () => {
       }
     })();
   }, []);
+
+  useEffect(() => {
+    if (optionCheck === 'thingName') {
+      setOptionCheck('');
+      setAscending(!ascending);
+      if (ascending) {
+        setChartData(chartData.sort((a, b) => a.thingName.split('-')[1] - b.thingName.split('-')[1]));
+      } else {
+        setChartData(chartData.sort((a, b) => b.thingName.split('-')[1] - a.thingName.split('-')[1]));
+      }
+    } else if (optionCheck === 'batLvl') {
+      setOptionCheck('');
+      setAscending(!ascending);
+      if (ascending) {
+        setChartData(chartData.sort((a, b) => a.shadow.batLvl - b.shadow.batLvl));
+      } else {
+        setChartData(chartData.sort((a, b) => b.shadow.batLvl - a.shadow.batLvl));
+      }
+    } else if (optionCheck === 'connCardNum') {
+      setOptionCheck('');
+      setAscending(!ascending);
+      if (ascending) {
+        setChartData(chartData.sort((a, b) => a.shadow.connCardNum - b.shadow.connCardNum));
+      } else {
+        setChartData(chartData.sort((a, b) => b.shadow.connCardNum - a.shadow.connCardNum));
+      }
+    } else if (optionCheck === 'connGW') {
+      setOptionCheck('');
+      setAscending(!ascending);
+      if (ascending) {
+        setChartData(chartData.sort((a, b) => a.shadow.connGW.split('-')[1] - b.shadow.connGW.split('-')[1]));
+      } else {
+        setChartData(chartData.sort((a, b) => b.shadow.connGW.split('-')[1] - a.shadow.connGW.split('-')[1]));
+      }
+    } else if (optionCheck === 'rawSentCnt') {
+      setOptionCheck('');
+      setAscending(!ascending);
+      if (ascending) {
+        setChartData(chartData.sort((a, b) => a.shadow.rawSentCnt - b.shadow.rawSentCnt));
+      } else {
+        setChartData(chartData.sort((a, b) => b.shadow.rawSentCnt - a.shadow.rawSentCnt));
+      }
+    } else if (optionCheck === 'remainData') {
+      setOptionCheck('');
+      setAscending(!ascending);
+      if (ascending) {
+        setChartData(chartData.sort((a, b) => a.shadow.remainData - b.shadow.remainData));
+      } else {
+        setChartData(chartData.sort((a, b) => b.shadow.remainData - a.shadow.remainData));
+      }
+    } else if (optionCheck === 'rssi') {
+      setOptionCheck('');
+      setAscending(!ascending);
+      if (ascending) {
+        setChartData(chartData.sort((a, b) => a.shadow.rssi - b.shadow.rssi));
+      } else {
+        setChartData(chartData.sort((a, b) => b.shadow.rssi - a.shadow.rssi));
+      }
+    } else {
+      console.log(originData);
+    }
+  }, [optionCheck]);
   return (
     <SensorChartBlock>
-      {/* <ChartHeader /> */}
       <table>
         <thead className='fixed'>
           <tr>
-            <td>#</td>
-            <td>Sensor ID</td>
-            <td>Bat.(%)</td>
-            <td>Connected at</td>
-            <td>Disconnected at</td>
-            <td>Reason</td>
-            <td>Card No.</td>
-            <td>Gateway</td>
-            <td>Raw sent</td>
-            <td>Remain</td>
-            <td>RSSI</td>
-            <td>F/W ver.</td>
-            <td>H/W ver.</td>
+            {header.map((category, index) => {
+              return (
+                <td className='headline' key={`${category.id + index}`} onClick={() => setOptionCheck(category.id)}>
+                  <span>{category.name}</span>
+                  {category.sort ? '' : <BsFillTriangleFill />}
+                </td>
+              );
+            })}
           </tr>
         </thead>
         <tbody>
           {chartData.map((sensorList, index) => {
-            return (
-              <>
-                <ChartRow key={`${sensorList.thingName}+${index}`} chartdata={sensorList} index={index} />
-              </>
-            );
+            return <ChartRow key={`${sensorList.thingName + index}`} chartdata={sensorList} index={index} />;
           })}
         </tbody>
       </table>
@@ -67,6 +122,15 @@ const SensorChartBlock = styled.div`
     position: sticky;
     top: 0;
     overflow: hidden;
+    line-height: 30px;
+    height: 30px;
     background-color: #ffffff;
+    .headline {
+      font-size: 8px;
+      span {
+        font-size: 16px;
+        margin-right: 5px;
+      }
+    }
   }
 `;
