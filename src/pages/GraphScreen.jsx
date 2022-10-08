@@ -1,19 +1,14 @@
 import { blue, pearl } from '../theme';
 import { Fade } from 'react-reveal';
 import styled from 'styled-components';
+import GraphField from '../components/GraphField/GraphField';
+
 const GraphScreen = () => {
   return (
     <>
     <Fade >
       <StyledGraphScreen>
-        <div className='graph-inner-box'>
-          {/* 기온박스 */}
-          <div className='temperatures-box'>1</div>
-          {/* 습도박스 */}
-          <div className='humidity-box'>2</div>
-          {/* 기압박스 */}
-          <div className='atmospheric-pressure-box'>3</div>
-        </div>
+        <GraphField />
       </StyledGraphScreen>
       </Fade>
     </>
@@ -56,6 +51,7 @@ const StyledGraphScreen = styled.div`
       background: #777;
     }
   }
+
 
   /* ============= ======= 1024px ============ ======== */
   @media screen and (max-width: 1024px) {
