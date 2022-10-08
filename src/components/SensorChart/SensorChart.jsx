@@ -1,13 +1,16 @@
 import styled from 'styled-components';
 import axios from 'axios';
 import { useEffect, useState } from 'react';
-
+import { BsFillTriangleFill } from 'react-icons/bs';
+import { header } from '../../assets/sensor/header';
 import ChartRow from './ChartRow';
-// import ChartHeader from './ChartHeader';
 
 const SensorChart = () => {
   const [chartData, setChartData] = useState([]);
   const [loading, setLoading] = useState(false);
+  const [optionCheck, setOptionCheck] = useState('');
+  const [ascending, setAscending] = useState(true);
+
   useEffect(() => {
     (async () => {
       setLoading(true);
@@ -21,34 +24,33 @@ const SensorChart = () => {
       }
     })();
   }, []);
+
+  useEffect(() => {
+    setAscending(!ascending);
+    if (optionCheck) console.log(optionCheck);
+  }, [optionCheck]);
+
   return (
     <SensorChartBlock>
-      {/* <ChartHeader /> */}
       <table>
         <thead className='fixed'>
           <tr>
-            <td>#</td>
-            <td>Sensor ID</td>
-            <td>Bat.(%)</td>
-            <td>Connected at</td>
-            <td>Disconnected at</td>
-            <td>Reason</td>
-            <td>Card No.</td>
-            <td>Gateway</td>
-            <td>Raw sent</td>
-            <td>Remain</td>
-            <td>RSSI</td>
-            <td>F/W ver.</td>
-            <td>H/W ver.</td>
+            <td>
+              <span>#</span>
+            </td>
+            {header.map((category, index) => {
+              return (
+                <td key={`${category.id + index}`} onClick={() => setOptionCheck(category.id)}>
+                  <span>{category.name}</span>
+                  <BsFillTriangleFill />
+                </td>
+              );
+            })}
           </tr>
         </thead>
         <tbody>
           {chartData.map((sensorList, index) => {
-            return (
-              <>
-                <ChartRow key={`${sensorList.thingName}+${index}`} chartdata={sensorList} index={index} />
-              </>
-            );
+            return <ChartRow key={`${sensorList.thingName + index}`} chartdata={sensorList} index={index} />;
           })}
         </tbody>
       </table>
@@ -68,5 +70,7 @@ const SensorChartBlock = styled.div`
     top: 0;
     overflow: hidden;
     background-color: #ffffff;
+  }
+  svg {
   }
 `;

@@ -27,8 +27,8 @@ const ChartRow = props => {
   return (
     <RowTr>
       <th>{index}</th>
-      {rowArray.map(rowdata => {
-        return <td>{rowdata}</td>;
+      {rowArray.map((rowdata, index) => {
+        return <td key={`${rowArray[0] + index}`}>{rowdata}</td>;
       })}
     </RowTr>
   );
