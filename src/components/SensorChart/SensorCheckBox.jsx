@@ -1,79 +1,99 @@
+import { useEffect } from 'react';
 import styled from 'styled-components';
 
-const SensorCheckBox = () => {
+const SensorCheckBox = ({ checkedArray, setCheckedArray }) => {
+  const radioHandler = (type, checkEl) => {
+    const condition = {
+      [type]: checkEl.currentTarget.value,
+    };
+    if (checkEl.currentTarget.checked) {
+      setCheckedArray({ ...checkedArray, ...condition });
+    } else if (!checkEl.currentTarget.checked && Object.keys(checkedArray).includes(type)) {
+      let test = checkedArray;
+      delete test[type];
+      setCheckedArray(test);
+    } else if (!checkEl.currentTarget.checked && !Object.keys(checkedArray).includes(type)) {
+      return;
+    }
+  };
+
+  useEffect(() => {
+    console.log(checkedArray);
+  }, [checkedArray]);
+
   return (
     <SensorCheckBoxBlock>
       <div className='margined'>
-        <span>Sensor ID</span>
+        <span>thingName</span>
         <div>
-          <input type='checkbox' />
+          <input name='thingName' type='radio' value='all' onChange={checkEl => radioHandler('thingName', checkEl)} defaultChecked />
           전체
-          <input type='checkbox' />
+          <input name='thingName' type='radio' value='FHL' onChange={checkEl => radioHandler('thingName', checkEl)} />
           FHL
-          <input type='checkbox' />
+          <input name='thingName' type='radio' value='FHS' onChange={checkEl => radioHandler('thingName', checkEl)} />
           FHS
         </div>
       </div>
       <div className='margined'>
-        <span>Bat.(%)</span>
+        <span>batLvl</span>
         <div>
-          <input type='checkbox' />
+          <input name='batLvl' type='radio' value='all' onChange={checkEl => radioHandler('batLvl', checkEl)} defaultChecked />
           전체
-          <input type='checkbox' />
+          <input name='batLvl' type='radio' value='up' onChange={checkEl => radioHandler('batLvl', checkEl)} />
           20% 초과
-          <input type='checkbox' />
+          <input name='batLvl' type='radio' value='down' onChange={checkEl => radioHandler('batLvl', checkEl)} />
           20% 이하
         </div>
       </div>
       <div className='margined'>
-        <span>Connection State</span>
+        <span>ConnectionState</span>
         <div>
-          <input type='checkbox' />
+          <input name='ConnectionState' type='radio' value='all' onChange={checkEl => radioHandler('ConnectionState', checkEl)} defaultChecked />
           전체
-          <input type='checkbox' />
+          <input name='ConnectionState' type='radio' value='connect' onChange={checkEl => radioHandler('ConnectionState', checkEl)} />
           연결중
-          <input type='checkbox' />
+          <input name='ConnectionState' type='radio' value='disconnect' onChange={checkEl => radioHandler('ConnectionState', checkEl)} />
           연결해제됨
         </div>
       </div>
       <div className='margined'>
-        <span>Card No.</span>
+        <span>connCardNum</span>
         <div>
-          <input type='checkbox' />
+          <input name='connCardNum' type='radio' value='all' onChange={checkEl => radioHandler('connCardNum', checkEl)} defaultChecked />
           전체
-          <input type='checkbox' />
+          <input name='connCardNum' type='radio' value='1' onChange={checkEl => radioHandler('connCardNum', checkEl)} />
           1
-          <input type='checkbox' />0
+          <input name='connCardNum' type='radio' value='0' onChange={checkEl => radioHandler('connCardNum', checkEl)} />0
         </div>
       </div>
       <div className='margined'>
-        <span>Remain</span>
+        <span>remainData</span>
         <div>
-          <input type='checkbox' />
+          <input name='remainData' type='radio' value='all' onChange={checkEl => radioHandler('remainData', checkEl)} defaultChecked />
           전체
-          <input type='checkbox' />
+          <input name='remainData' type='radio' value='up' onChange={checkEl => radioHandler('remainData', checkEl)} />
           1000이상
         </div>
       </div>
       <div className='margined'>
-        <span>F/W ver.</span>
+        <span>fwVer</span>
         <div>
-          <input type='checkbox' />
+          <input name='fwVer' type='radio' value='all' onChange={checkEl => radioHandler('fwVer', checkEl)} defaultChecked />
           전체
-          <input type='checkbox' />
+          <input name='fwVer' type='radio' value='1.0.0' onChange={checkEl => radioHandler('fwVer', checkEl)} />
           1.0.0
-          <input type='checkbox' />
+          <input name='fwVer' type='radio' value='0.8.2' onChange={checkEl => radioHandler('fwVer', checkEl)} />
           0.8.2
         </div>
       </div>
       <div className='margined'>
-        <span>H/W ver.</span>
+        <span>hwVer</span>
         <div>
-          <input type='checkbox' />
+          <input name='hwVer' type='radio' value='all' onChange={checkEl => radioHandler('hwVer', checkEl)} defaultChecked />
           전체
-          <input type='checkbox' />
+          <input name='hwVer' type='radio' value='1.0.0' onChange={checkEl => radioHandler('hwVer', checkEl)} />
           1.0.0
-          <input type='checkbox' />
+          <input name='hwVer' type='radio' value='0.2.0' onChange={checkEl => radioHandler('hwVer', checkEl)} />
           0.2.0
         </div>
       </div>

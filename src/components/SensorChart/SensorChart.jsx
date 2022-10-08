@@ -5,9 +5,12 @@ import { useEffect, useState } from 'react';
 import ChartRow from './ChartRow';
 // import ChartHeader from './ChartHeader';
 
-const SensorChart = () => {
+const SensorChart = ({ checkedArray, setCheckedArray }) => {
   const [chartData, setChartData] = useState([]);
   const [loading, setLoading] = useState(false);
+  const [displayData, setDisplayData] = useState([]);
+
+  const checkboxCondition = ['connCardNum', 'fwVer', 'hwVer'];
 
   useEffect(() => {
     (async () => {
@@ -16,12 +19,75 @@ const SensorChart = () => {
         const { data } = await axios('/data/sensorInfoList.json');
         setLoading(false);
         setChartData(data);
+        setDisplayData(data);
       } catch (error) {
         console.log(error);
         setLoading(true);
       }
     })();
   }, []);
+
+  useEffect(() => {
+    let test = [];
+    let checkboxConditionState = true;
+
+    for (const sensorList of chartData) {
+      let sensorListStateArray = Object.keys(checkedArray);
+      if (sensorListStateArray.includes('thingName')) {
+        if (sensorList.thingName.slice(0, 3) !== checkedArray.thingName && checkedArray.thingName !== 'all') {
+          continue;
+        }
+      }
+
+      if (sensorListStateArray.includes('batLvl')) {
+        if (checkedArray.batLvl === 'up') {
+          if (sensorList.shadow.batLvl <= 20) {
+            continue;
+          }
+        } else if (checkedArray.batLvl === 'down') {
+          if (sensorList.shadow.batLvl > 20) {
+            continue;
+          }
+        }
+      }
+
+      if (sensorListStateArray.includes('ConnectionState')) {
+        if (checkedArray.ConnectionState === 'connect') {
+          if (!sensorList.shadow.connectedGateway) {
+            continue;
+          }
+        } else if (checkedArray.ConnectionState === 'disconnect') {
+          if (sensorList.shadow.connectedGateway) {
+            continue;
+          }
+        }
+      }
+
+      if (sensorListStateArray.includes('remainData')) {
+        if (checkedArray.remainData === 'up') {
+          if (sensorList.shadow.remainData < 1000) {
+            continue;
+          }
+        }
+      }
+
+      checkboxCondition.some(condition => {
+        if (sensorListStateArray.includes(condition)) {
+          if (String(sensorList.shadow[condition]) !== checkedArray[condition] && checkedArray[condition] !== 'all') {
+            checkboxConditionState = false;
+            return true;
+          }
+        }
+      });
+      if (checkboxConditionState) {
+        test.push(sensorList);
+      } else {
+        continue;
+      }
+    }
+    setDisplayData(test);
+  }, [checkedArray]);
+
   return (
     <SensorChartBlock>
       {/* <ChartHeader /> */}
@@ -44,7 +110,7 @@ const SensorChart = () => {
           </tr>
         </thead>
         <tbody>
-          {chartData.map((sensorList, index) => {
+          {displayData.map((sensorList, index) => {
             return (
               <>
                 <ChartRow key={`${sensorList.thingName}+${index}`} chartdata={sensorList} index={index} />

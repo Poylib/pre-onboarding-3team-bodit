@@ -27,8 +27,15 @@ const ChartRow = props => {
   return (
     <RowTr>
       <th>{index}</th>
-      {rowArray.map(rowdata => {
-        return <td>{rowdata}</td>;
+      {rowArray.map((rowdata, index) => {
+        if (index === 1 && rowdata <= 20) {
+          return (
+            <td className='lowBattery' key={index + chartdata.thingName}>
+              {rowdata}
+            </td>
+          );
+        }
+        return <td key={index + chartdata.thingName}>{rowdata}</td>;
       })}
     </RowTr>
   );
@@ -45,5 +52,8 @@ const RowTr = styled.tr`
     text-align: center;
     vertical-align: middle;
     padding: 0 20px 0 20px;
+  }
+  .lowBattery {
+    color: #ff0000;
   }
 `;
