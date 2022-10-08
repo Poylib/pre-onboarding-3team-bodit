@@ -76,6 +76,27 @@ const CalendarBlock = styled.div`
     color: #ffffff;
     background-color: ${blue};
   }
+  @media screen and (max-width: 890px) {
+    display: flex;
+    width: 70%;
+    padding: 3px;
+    background-color: transparent;
+    border: 1px solid #ffffff;
+    border-radius: 5px;
+    .container {
+      width: 100%;
+      border: none;
+      text-align: center;
+      font-size: 20px;
+      background-color: transparent;
+      color: #ffffff;
+      font-weight: 600;
+    }
+    .calendar-icon {
+      width: 30px;
+      filter: opacity(0.4) drop-shadow(0 0 0 #fff);
+    }
+  } ;
 `;
 
 export default Calendar;
