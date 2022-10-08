@@ -8,7 +8,7 @@ function App() {
   return (
     <>
       <GlobalStyle />
-      <Nav />
+      {/* <Nav /> */}
       <Routes>
         <Route path='/' element={<SensorPage />} />
         <Route path='/graph' element={<GraphScreen />} />

@@ -5,7 +5,7 @@ import { AiOutlineMenu } from 'react-icons/ai';
 // #7B9ACC (파란색)
 // #FCF6F5 (진주색)
 
-const Nav = () => {
+const Nav = props => {
   return (
     <NavBlock>
       {/* 로고영역박스 */}
@@ -21,6 +21,8 @@ const Nav = () => {
             <div className='calender-btn'>
               <span>2022년 10월 8일</span>
             </div>
+            {/* 1페이지로 레이아웃 가져감 */}
+            {props.children}
           </div>
 
           {/* Export */}

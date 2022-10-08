@@ -3,9 +3,10 @@ import axios from 'axios';
 import { useEffect, useState } from 'react';
 
 import ChartRow from './ChartRow';
+import GraphScreen from '../../pages/GraphScreen';
 // import ChartHeader from './ChartHeader';
 
-const SensorChart = ({ checkedArray, setCheckedArray }) => {
+const SensorChart = ({ checkedArray }) => {
   const [chartData, setChartData] = useState([]);
   const [loading, setLoading] = useState(false);
   const [displayData, setDisplayData] = useState([]);
@@ -29,12 +30,12 @@ const SensorChart = ({ checkedArray, setCheckedArray }) => {
 
   useEffect(() => {
     let test = [];
-    let checkboxConditionState = true;
 
     for (const sensorList of chartData) {
+      let checkboxConditionState = true;
       let sensorListStateArray = Object.keys(checkedArray);
       if (sensorListStateArray.includes('thingName')) {
-        if (sensorList.thingName.slice(0, 3) !== checkedArray.thingName && checkedArray.thingName !== 'all') {
+        if (!sensorList.thingName.includes(checkedArray.thingName) && checkedArray.thingName !== 'all') {
           continue;
         }
       }
@@ -73,7 +74,7 @@ const SensorChart = ({ checkedArray, setCheckedArray }) => {
 
       checkboxCondition.some(condition => {
         if (sensorListStateArray.includes(condition)) {
-          if (String(sensorList.shadow[condition]) !== checkedArray[condition] && checkedArray[condition] !== 'all') {
+          if (!String(sensorList.shadow[condition]).includes(checkedArray[condition]) && checkedArray[condition] !== 'all') {
             checkboxConditionState = false;
             return true;
           }
@@ -89,43 +90,47 @@ const SensorChart = ({ checkedArray, setCheckedArray }) => {
   }, [checkedArray]);
 
   return (
-    <SensorChartBlock>
-      {/* <ChartHeader /> */}
-      <table>
-        <thead className='fixed'>
-          <tr>
-            <td>#</td>
-            <td>Sensor ID</td>
-            <td>Bat.(%)</td>
-            <td>Connected at</td>
-            <td>Disconnected at</td>
-            <td>Reason</td>
-            <td>Card No.</td>
-            <td>Gateway</td>
-            <td>Raw sent</td>
-            <td>Remain</td>
-            <td>RSSI</td>
-            <td>F/W ver.</td>
-            <td>H/W ver.</td>
-          </tr>
-        </thead>
-        <tbody>
-          {displayData.map((sensorList, index) => {
-            return (
-              <>
-                <ChartRow key={`${sensorList.thingName}+${index}`} chartdata={sensorList} index={index} />
-              </>
-            );
-          })}
-        </tbody>
-      </table>
-    </SensorChartBlock>
+    <GraphScreen>
+      <SensorChartBlock>
+        {/* <ChartHeader /> */}
+        <table>
+          <thead className='fixed'>
+            <tr>
+              <td>#</td>
+              <td>Sensor ID</td>
+              <td>Bat.(%)</td>
+              <td>Connected at</td>
+              <td>Disconnected at</td>
+              <td>Reason</td>
+              <td>Card No.</td>
+              <td>Gateway</td>
+              <td>Raw sent</td>
+              <td>Remain</td>
+              <td>RSSI</td>
+              <td>F/W ver.</td>
+              <td>H/W ver.</td>
+            </tr>
+          </thead>
+          <tbody>
+            {displayData.map((sensorList, index) => {
+              return (
+                <>
+                  <ChartRow key={`${sensorList.thingName}+${index}`} chartdata={sensorList} index={index} />
+                </>
+              );
+            })}
+          </tbody>
+        </table>
+      </SensorChartBlock>
+    </GraphScreen>
   );
 };
 
 export default SensorChart;
 
 const SensorChartBlock = styled.div`
+  height: 100%;
+  overflow: scroll;
   td {
     text-align: center;
   }

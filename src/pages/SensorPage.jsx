@@ -8,7 +8,7 @@ const SensorPage = () => {
 
   return (
     <StyledSensor>
-      <SensorChart checkedArray={checkedArray} setCheckedArray={setCheckedArray} />
+      <SensorChart checkedArray={checkedArray} />
       <SensorCheckBox checkedArray={checkedArray} setCheckedArray={setCheckedArray} />
     </StyledSensor>
   );
