@@ -138,19 +138,21 @@ npm run dev
 
 ## ✅ 캘린더 UI 구현
 
+<img src="https://user-images.githubusercontent.com/87900492/194771032-89b84d0d-efd9-44be-ba59-e5a44b313819.gif" width="150%" height="100%"/>
 ![켈린더연동](https://user-images.githubusercontent.com/87900492/194771035-b2733349-22d4-4d63-9f65-2851cb0bd6b3.gif)
 <br/>
 <br/>
 
 ## ✅ 리스트 반응형UI 구현
 
+<img src="https://user-images.githubusercontent.com/87900492/194771032-89b84d0d-efd9-44be-ba59-e5a44b313819.gif" width="150%" height="100%"/>
 ![리스트반응형](https://user-images.githubusercontent.com/87900492/194771033-23a838bd-6df7-4ecf-9bc5-a2580b7d3bd0.gif)
 <br/>
 <br/>
 
 ## ✅ 그래프 반응형UI 구현
 
-![그래프반응형](https://user-images.githubusercontent.com/87900492/194771029-23f51b58-f44c-4635-b1cc-ed9570135b85.gif)
+<img src="https://user-images.githubusercontent.com/87900492/194771029-23f51b58-f44c-4635-b1cc-ed9570135b85.gif" width="150%" height="100%"/>
 <br/>
 <br/>
 
