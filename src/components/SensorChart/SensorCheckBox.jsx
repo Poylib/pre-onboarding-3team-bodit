@@ -212,6 +212,7 @@ const SensorCheckBoxBlock = styled.div`
     cursor: pointer;
   }
 
+    /* ============= ======= 1400px ============ ======== */
   @media screen and (max-width: 1400px) {
     overflow: scroll;
     .InputBox {
@@ -230,6 +231,7 @@ const SensorCheckBoxBlock = styled.div`
     }
   }
 
+    /* ============= ======= 1024px ============ ======== */
   @media screen and (max-width: 890px) {
     width: 100%;
   height: 100%;

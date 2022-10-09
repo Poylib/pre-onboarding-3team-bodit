@@ -51,11 +51,5 @@ const StyledSensor = styled.div`
     }
   }
 
-  /* ============= ======= 480px ============ ======== */
-  @media screen and (max-width: 480px) {
-  }
 
-  /* ============= ======= 378px ============ ======== */
-  @media screen and (max-width: 378px) {
-  }
 `;

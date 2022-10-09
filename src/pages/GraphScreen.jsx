@@ -32,12 +32,4 @@ const StyledGraphScreen = styled.div`
     width: 100%;
     margin-left: 0;
   }
-
-  /* ============= ======= 480px ============ ======== */
-  @media screen and (max-width: 480px) {
-  }
-
-  /* ============= ======= 378px ============ ======== */
-  @media screen and (max-width: 378px) {
-  }
 `;

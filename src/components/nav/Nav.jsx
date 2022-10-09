@@ -282,6 +282,8 @@ const NavBlock = styled.header`
     }
   }
 
+
+  /* ============= ======= 1024px ============ ======== */
   @media screen and (max-width: 1024px) {
     .header-inner-box {
       /* 로고영역박스 */
@@ -337,7 +339,7 @@ const NavBlock = styled.header`
       }
     }
   }
-
+  /* ============= ======= 890px ============ ======== */
   @media screen and (max-width: 890px) {
     .header-inner-box {
       position: unset;
