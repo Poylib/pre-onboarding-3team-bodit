@@ -47,7 +47,6 @@ const GraphField = () => {
           setIsData(false);
         }
       } catch (error) {
-        console.log(error);
         localStorage.setItem('graphChannel', JSON.stringify({}));
         localStorage.setItem('graphFeeds', JSON.stringify({}));
         setIsData(false);
