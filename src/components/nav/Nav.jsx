@@ -13,7 +13,7 @@ const Nav = () => {
   const [toggle, setToggle] = useState(false);
   const location = useLocation();
 
-  const [fileName, setFileName] = useState([]);
+  const [fileName, setFileName] = useState('');
   const [fileHeader, setFileHeader] = useState([]);
   const [fileData, setFileData] = useState([]);
 
