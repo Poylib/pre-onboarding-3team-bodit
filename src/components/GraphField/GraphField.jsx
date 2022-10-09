@@ -3,6 +3,7 @@ import { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import Graph from './Graph';
 import { blue } from '../../theme';
+import Bounce from 'react-reveal/Bounce';
 
 const GraphField = () => {
   const [tempData, setTempData] = useState([]);
@@ -59,9 +60,15 @@ const GraphField = () => {
 
   return (
     <GraphFieldWrapper>
+      <Bounce>
       <Graph data={tempData} unit={'Temperature (°C)'} color={'black'} />
+      </Bounce>
+      <Bounce delay={500}>
       <Graph data={humidityData} unit={'Humidity (%)'} color={'red'} />
+      </Bounce>
+      <Bounce delay={1000}>
       <Graph data={pressureData} unit={'pressure (hPa)'} color={'aqua'} />
+      </Bounce>
     </GraphFieldWrapper>
   );
 };

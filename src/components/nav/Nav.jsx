@@ -55,7 +55,7 @@ const Nav = () => {
               {/* Export */}
               <div className='export-btn-box'>
                 <NavLink to='/' className='export-btn'>
-                  EXPROT
+                  EXPORT
                 </NavLink>
               </div>
             </div>
@@ -82,6 +82,14 @@ const NavBlock = styled.header`
     .header-logo-box {
       width: 100%;
       height: 150px;
+      .close{
+        display: none;
+          position: absolute;
+          top: 50px;
+          right: 50px;
+          font-size: 30px;
+          cursor: pointer;
+        }
       .logo-title {
         display: flex;
         justify-content: center;
@@ -145,7 +153,7 @@ const NavBlock = styled.header`
             font: 30px/1 'apple';
             color: ${blue};
             transition: all 0.5s;
-            c &:hover {
+             &:hover {
               color: ${pearl};
             }
           }
@@ -176,7 +184,6 @@ const NavBlock = styled.header`
           }
           a{
             font: bold 25px/1 'apple';
-            color: ${blue};
           }
         }
       }
@@ -203,7 +210,11 @@ const NavBlock = styled.header`
           }
           a{
             font: bold 25px/1 'apple';
-            color: ${blue};
+            color: #ddd;
+            transition: all 0.5s;
+            &:hover{
+              color: ${blue};
+            }
           }
         }
       }
@@ -231,6 +242,10 @@ const NavBlock = styled.header`
       }
     }
   }
+
+
+
+
 
   @media screen and (max-width: 1024px) {
     .header-inner-box {
@@ -285,7 +300,6 @@ const NavBlock = styled.header`
       }
     }
   }
-
   @media screen and (max-width: 890px) {
     .header-inner-box {
       position: unset;
@@ -304,6 +318,7 @@ const NavBlock = styled.header`
           font: bold 50px/1 'Pacifico';
         }
         .close{
+          display: block;
           position: absolute;
           top: 50px;
           right: 50px;
