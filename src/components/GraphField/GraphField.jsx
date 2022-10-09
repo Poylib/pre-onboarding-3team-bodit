@@ -18,13 +18,12 @@ const GraphField = () => {
 
   useEffect(() => {
     setCalendarDate(location.search.replace('?', ''));
-    setTargetRange([]);
+    setTargetRange(['00:00', '23:59']);
     setTargetTimeQuery('');
   }, [location.search]);
 
   useEffect(() => {
     (async () => {
-      // loading
       try {
         const {
           data: { channel, feeds },
@@ -49,7 +48,6 @@ const GraphField = () => {
         localStorage.setItem('graphChannel', JSON.stringify({}));
         localStorage.setItem('graphFeeds', JSON.stringify({}));
         setIsData(false);
-        // loading
       }
     })();
   }, [calendarDate, targetTimeQuery]);
