@@ -94,9 +94,9 @@ npm run dev
 
 > 구현 - [그래프페이지] 그래프UI, Hover시 해당 좌표 출력
 
-> 박찬영 - [목록페이지] 목록UI, 카테고리별 필터링(오름차순,내림차순)
+> 박찬영 - [리스트페이지] 리스트UI, 카테고리별 필터링(오름차순,내림차순)
 
-> 이동호 - [목록페이지] 목록UI, 카테고리별 필터링(체크박스)
+> 이동호 - [리스트페이지] 리스트UI, 카테고리별 필터링(체크박스)
 
 > 이유나 - [그래프페이지] 달력 UI, 버튼 상호작용 추가
 
@@ -106,52 +106,59 @@ npm run dev
 
 # 주요기능 및 설명
 
-## ✅ 메인 카테고리별 Nav 및 Click시 선택 페이지 이동
+## ✅ 메인 카테고리별 Nav 구현
 
+![Nav 반응형](https://user-images.githubusercontent.com/87900492/194771036-0574d186-c73b-48c1-9a75-1cb71d377779.gif)
 <br/>
 <br/>
 
-## ✅ 목록 카테고리별 오름차순, 내림차순 필터링 구현
+## ✅ 리스트 UI구현
 
+![리스트UI](https://user-images.githubusercontent.com/87900492/194771187-ce52b70f-29d9-452d-83d4-a0022f710353.png)
 <br/>
 <br/>
 
-## ✅ 목록 카테고리별 체크박스 필터링 구현
+## ✅ 리스트 카테고리별 필터링 구현
 
+![리스트필터링](https://user-images.githubusercontent.com/87900492/194771034-96420f84-b33f-4fe5-ab8d-4d99c2e32708.gif)
 <br/>
 <br/>
 
-## ✅ 목록 행마다 Hover효과 구현
+## ✅ 그래프 UI구현
 
+![그래프UI](https://user-images.githubusercontent.com/87900492/194771189-cc9742a1-98a7-4c5c-8b39-18d6010727ce.png)
 <br/>
 <br/>
 
-## ✅ 서버API를 통해 받은 데이터를 그래프 형태로 구현
+## ✅ 그래프확대 기능 구현
 
+![그래프확대](https://user-images.githubusercontent.com/87900492/194771032-89b84d0d-efd9-44be-ba59-e5a44b313819.gif)
 <br/>
 <br/>
 
-## ✅ 그래프 Hover시 해당 좌표 표시되는 기능 구현
+## ✅ 캘린더 UI 구현
 
+![켈린더연동](https://user-images.githubusercontent.com/87900492/194771035-b2733349-22d4-4d63-9f65-2851cb0bd6b3.gif)
 <br/>
 <br/>
 
-## ✅ 달력아이콘 클릭시 전체달력UI 표시되는 기능 구현
+## ✅ 리스트 반응형UI 구현
 
+![리스트반응형](https://user-images.githubusercontent.com/87900492/194771033-23a838bd-6df7-4ecf-9bc5-a2580b7d3bd0.gif)
 <br/>
 <br/>
 
-## ✅ 달력UI에서 날짜 클릭시 해당 기간 데이터가 그래프에 표시되는 기능 구현
+## ✅ 그래프 반응형UI 구현
 
+![그래프반응형](https://user-images.githubusercontent.com/87900492/194771029-23f51b58-f44c-4635-b1cc-ed9570135b85.gif)
 <br/>
 <br/>
 
-## ✅ 반응형 목록페이지
+## ✅ 메뉴바 반응형UI 구현
 
+![반응형메뉴바UI](https://user-images.githubusercontent.com/87900492/194771196-294c8c33-357e-4e5e-812c-4d2a5774612b.png)
 <br/>
 <br/>
-
-## ✅ 반응형 그래프페이지
 
 # 팀원소개
 
