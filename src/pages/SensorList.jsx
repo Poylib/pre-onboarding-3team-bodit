@@ -1,6 +1,6 @@
 import { Fade } from 'react-reveal';
 import styled from 'styled-components';
-import { blue, pearl } from '../theme';
+import { blue } from '../theme';
 import SensorPage from './SensorPage';
 const SensorList = () => {
   return (
