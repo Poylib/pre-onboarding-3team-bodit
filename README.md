@@ -157,7 +157,7 @@ npm run dev
 
 ## ✅ 그래프 반응형UI 구현
 
-<img src="https://user-images.githubusercontent.com/87900492/194771029-23f51b58-f44c-4635-b1cc-ed9570135b85.gif" width="150%" height="100%"/>
+<img src="https://user-images.githubusercontent.com/94745558/194780134-5fc74815-936a-42ad-be1c-c0e2bd312b8f.gif" width="150%" height="100%"/>
 <br/>
 <br/>
 
