@@ -99,7 +99,10 @@ const GraphField = () => {
             <TimeRangeButton className='time-btn' onClick={makeTargetQuery}>
               적용하기
             </TimeRangeButton>
-            <ToolTip>그래프에서 원하는 시간대를 클릭하면 해당시간부터 6시간 간격으로 그래프가 확대됩니다.</ToolTip>
+            <ToolTip>
+              그래프에서 원하는 시간대를 클릭한 후 <span style={{ color: '#ff6363' }}>"적용하기"</span>를 클릭하세요. <br />
+              해당시간부터 6시간 간격으로 그래프가 확대됩니다.
+            </ToolTip>
           </TargetTimeWaraper>
           <Bounce>
             <Graph data={tempData} unit={'Temperature (°C)'} color={'Lightcoral'} getTargetTime={getTargetTime} />
@@ -135,14 +138,7 @@ const GraphFieldWrapper = styled.div`
   }
 
   @media screen and (max-width: 1024px) {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-around;
-    width: 100%;
-    height: 100%;
     padding: 9% 0px 9%;
-    border: 3px solid ${blue};
-    background-color: #ffffffd5;
   }
 `;
 
@@ -179,9 +175,8 @@ const TimeRangeButton = styled.button`
 `;
 
 const ToolTip = styled.span`
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  text-align: center;
+  line-height: 20px;
   width: 100%;
   margin: 10px 0px 10px 0px;
   font-size: 12px;

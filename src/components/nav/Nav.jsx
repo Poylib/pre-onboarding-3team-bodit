@@ -84,10 +84,24 @@ const Nav = () => {
                 </span>
               </div>
               <li>
-                <NavLink to='/'>SensorList</NavLink>
+                <NavLink
+                  to='/'
+                  onClick={() => {
+                    setToggle(false);
+                  }}
+                >
+                  SensorList
+                </NavLink>
               </li>
               <li>
-                <NavLink to='/graph/target'>GrphScreen</NavLink>
+                <NavLink
+                  to='/graph/target'
+                  onClick={() => {
+                    setToggle(false);
+                  }}
+                >
+                  GrphScreen
+                </NavLink>
               </li>
             </ul>
 
@@ -113,6 +127,12 @@ const Nav = () => {
                 <CSVLink className='export-btn' onClick={makeCsv} filename={fileName} headers={fileHeader} data={fileData}>
                   EXPORT
                 </CSVLink>
+                <p>
+                  원하는 날짜와 시간대를 설정 후<br />
+                  <span style={{ color: '#ff6363' }}>"EXPORT"</span>를 클릭하세요.
+                  <br />
+                  csv 파일을 다운로드 합니다.
+                </p>
               </div>
             )}
           </div>
@@ -298,6 +318,7 @@ const NavBlock = styled.header`
         display: flex;
         justify-content: center;
         align-items: center;
+        flex-direction: column;
         width: 100%;
         padding: 20px 0px;
         .export-btn {
@@ -311,6 +332,13 @@ const NavBlock = styled.header`
           font: bold 25px/1 'Pacifico';
           color: ${pearl};
           cursor: pointer;
+        }
+        p {
+          margin: 10px 0;
+          text-align: center;
+          line-height: 20px;
+          font-size: 12px;
+          color: ${blue};
         }
       }
     }
@@ -487,11 +515,14 @@ const NavBlock = styled.header`
             align-items: center;
             width: 200px;
             height: 50px;
-            background: ${blue};
+            background: ${pearl};
             border-radius: 50px;
             font: bold 25px/1 'Pacifico';
-            color: ${pearl};
+            color: ${blue};
             cursor: pointer;
+          }
+          p {
+            color: ${pearl};
           }
         }
       }
