@@ -14,6 +14,14 @@ const GraphField = () => {
   const [pressureData, setPressureData] = useState([]);
   const [targetRange, setTargetRange] = useState([]);
   const [targetTimeQuery, setTargetTimeQuery] = useState('');
+  const [calendarDate, setCalendarDate] = useState('');
+  const [isData, setIsData] = useState(false);
+
+  useEffect(() => {
+    setCalendarDate(location.search.replace('?', ''));
+    setTargetRange([]);
+    setTargetTimeQuery('');
+  }, [location.search]);
 
   useEffect(() => {
     (async () => {
@@ -24,18 +32,23 @@ const GraphField = () => {
         } = await axios.get(
           targetTimeQuery
             ? `https://api.thingspeak.com/channels/1348864/feeds.json?api_key=6SKW0U97IPV2QQV9&${targetTimeQuery}`
-            : `https://api.thingspeak.com/channels/1348864/feeds.json?api_key=6SKW0U97IPV2QQV9&${location.search.replace('?', '')}&results=140&average=60`
+            : `https://api.thingspeak.com/channels/1348864/feeds.json?api_key=6SKW0U97IPV2QQV9&${calendarDate}&results=140&average=60`
         );
-        setTempData([{ id: channel.field1, data: extract('field1', feeds) }]);
-        setHumidityData([{ id: channel.field2, data: extract('field2', feeds) }]);
-        setPressureData([{ id: channel.field3, data: extract('field3', feeds) }]);
+        if (feeds.length > 0) {
+          setTempData([{ id: channel.field1, data: extract('field1', feeds) }]);
+          setHumidityData([{ id: channel.field2, data: extract('field2', feeds) }]);
+          setPressureData([{ id: channel.field3, data: extract('field3', feeds) }]);
+          setIsData(true);
+        } else {
+          setIsData(false);
+        }
       } catch (error) {
         console.log(error);
         alert('통신 실패');
         // loading
       }
     })();
-  }, [location.search, targetTimeQuery]);
+  }, [calendarDate, targetTimeQuery]);
 
   const extract = (graphType, allData) => {
     let graphValue = [];
@@ -65,7 +78,7 @@ const GraphField = () => {
   };
 
   const makeTargetQuery = () => {
-    const date = makeDateRangeQuery().split('&')[0].split('=')[1];
+    const date = calendarDate.split('&')[0].split('=')[1];
 
     const startQuery = `start=${date}%20${targetRange[0]}:00`;
     const endQuery = `end=${date}%20${targetRange[1]}:00`;
@@ -75,28 +88,34 @@ const GraphField = () => {
 
   return (
     <GraphFieldWrapper>
-      <TargetTime>
-        <div className='time-inner-box'>
-          <span className='time'>
-            {targetRange[0]}~{targetRange[1]}
-          </span>
-          <button className='time-btn' onClick={makeTargetQuery}>
-            적용하기
-          </button>
-          <span className='tooltip'>
-            <AiFillQuestionCircle />
-          </span>
+      {isData ? (
+        <div className='graph-field'>
+          <TargetTime>
+            <div className='time-inner-box'>
+              <span className='time'>
+                {targetRange[0]}~{targetRange[1]}
+              </span>
+              <button className='time-btn' onClick={makeTargetQuery}>
+                적용하기
+              </button>
+              <span className='tooltip'>
+                <AiFillQuestionCircle />
+              </span>
+            </div>
+          </TargetTime>
+          <Bounce>
+            <Graph data={tempData} unit={'Temperature (°C)'} color={'black'} getTargetTime={getTargetTime} />
+          </Bounce>
+          <Bounce delay={500}>
+            <Graph data={humidityData} unit={'Humidity (%)'} color={'red'} getTargetTime={getTargetTime} />
+          </Bounce>
+          <Bounce delay={1000}>
+            <Graph data={pressureData} unit={'pressure (hPa)'} color={'aqua'} getTargetTime={getTargetTime} />
+          </Bounce>
         </div>
-      </TargetTime>
-      <Bounce>
-        <Graph data={tempData} unit={'Temperature (°C)'} color={'black'} getTargetTime={getTargetTime} />
-      </Bounce>
-      <Bounce delay={500}>
-        <Graph data={humidityData} unit={'Humidity (%)'} color={'red'} getTargetTime={getTargetTime} />
-      </Bounce>
-      <Bounce delay={1000}>
-        <Graph data={pressureData} unit={'pressure (hPa)'} color={'aqua'} getTargetTime={getTargetTime} />
-      </Bounce>
+      ) : (
+        <div className='none-graph-field'>데이터가 없습니다. 오늘 날짜 이전으로 설정해주세요.</div>
+      )}
     </GraphFieldWrapper>
   );
 };
@@ -129,6 +148,10 @@ const GraphFieldWrapper = styled.div`
       background-color: #ffffff86;
       border: 1px solid #ddd;
     }
+  }
+
+  .none-graph-field {
+    text-align: center;
   }
 
   @media screen and (max-width: 1024px) {
