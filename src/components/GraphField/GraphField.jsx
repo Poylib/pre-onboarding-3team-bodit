@@ -102,13 +102,13 @@ const GraphField = () => {
             <ToolTip>그래프에서 원하는 시간대를 클릭하면 해당시간부터 6시간 간격으로 그래프가 확대됩니다.</ToolTip>
           </TargetTimeWaraper>
           <Bounce>
-            <Graph data={tempData} unit={'Temperature (°C)'} color={'black'} getTargetTime={getTargetTime} />
+            <Graph data={tempData} unit={'Temperature (°C)'} color={'Lightcoral'} getTargetTime={getTargetTime} />
           </Bounce>
           <Bounce delay={500}>
-            <Graph data={humidityData} unit={'Humidity (%)'} color={'red'} getTargetTime={getTargetTime} />
+            <Graph data={humidityData} unit={'Humidity (%)'} color={'Mediumaquamarine'} getTargetTime={getTargetTime} />
           </Bounce>
           <Bounce delay={1000}>
-            <Graph data={pressureData} unit={'Pressure (hPa)'} color={'aqua'} getTargetTime={getTargetTime} />
+            <Graph data={pressureData} unit={'Pressure (hPa)'} color={'Slateblue'} getTargetTime={getTargetTime} />
           </Bounce>
         </div>
       ) : (
