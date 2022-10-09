@@ -143,6 +143,8 @@ const NavBlock = styled.header`
       margin-top: 30px;
       /* 캘린더박스 */
       .calendar-inner-box {
+        position: relative;
+        z-index: 1;
         width: 100%;
         height: 10%;
         padding: 20px 0px;

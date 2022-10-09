@@ -145,13 +145,10 @@ const SensorCheckBox = () => {
               </label>
             </div>
           </div>
-          <button>
-            <span>reset</span>
-          </button>
+          <button>reset</button>
         </div>
       </form>
     </SensorCheckBoxBlock>
-
   );
 };
 
@@ -164,6 +161,8 @@ const SensorCheckBoxBlock = styled.div`
   border-top: 1px solid ${blue};
   border-bottom: 1px solid ${blue};
   color: ${blue};
+  position: relative;
+  z-index: 10;
   .margined {
     margin-bottom: 15px;
   }
@@ -210,7 +209,7 @@ const SensorCheckBoxBlock = styled.div`
     cursor: pointer;
   }
 
-    /* ============= ======= 1400px ============ ======== */
+  /* ============= ======= 1400px ============ ======== */
   @media screen and (max-width: 1400px) {
     overflow: scroll;
     .InputBox {
@@ -229,73 +228,73 @@ const SensorCheckBoxBlock = styled.div`
     }
   }
 
-    /* ============= ======= 1024px ============ ======== */
+  /* ============= ======= 1024px ============ ======== */
   @media screen and (max-width: 890px) {
     width: 100%;
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  border-top: 1px solid ${blue};
-  border-bottom: 1px solid ${blue};
-  color: ${pearl};
-  .margined {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    width:180px;
-    height: 100px;
-    margin-bottom: 15px;
-  }
-  .InputBox {
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-top: 10px;
-    [type='radio'] {
-      vertical-align: middle;
-      appearance: none;
-      border: max(2px, 0.1em) solid ${pearl};
-      border-radius: 50%;
-      width: 1.3em;
-      height: 1.3em;
-    }
-    [type='radio']:checked {
-      border: 0.4em solid ${pearl};
-    }
-    span {
-      margin-right: 0.5em;
-    }
-  }
-  .scroll {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: row;
-    flex-wrap: wrap;
-    width: 100%;
     height: 100%;
-  }
-  label {
     display: flex;
+    flex-direction: column;
     align-items: center;
-  }
-  button {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin: 0 auto;
-    width: 100%;
-    height: 30px;
-    background: ${blue};
-    border-radius: 50px;
-    border: none;
-    font: bold 20px/1 'Pacifico';
+    border-top: 1px solid ${blue};
+    border-bottom: 1px solid ${blue};
     color: ${pearl};
-    cursor: pointer;
-  }
+    .margined {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      width: 180px;
+      height: 100px;
+      margin-bottom: 15px;
+    }
+    .InputBox {
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin-top: 10px;
+      [type='radio'] {
+        vertical-align: middle;
+        appearance: none;
+        border: max(2px, 0.1em) solid ${pearl};
+        border-radius: 50%;
+        width: 1.3em;
+        height: 1.3em;
+      }
+      [type='radio']:checked {
+        border: 0.4em solid ${pearl};
+      }
+      span {
+        margin-right: 0.5em;
+      }
+    }
+    .scroll {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: row;
+      flex-wrap: wrap;
+      width: 100%;
+      height: 100%;
+    }
+    label {
+      display: flex;
+      align-items: center;
+    }
+    button {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin: 0 auto;
+      width: 100%;
+      height: 30px;
+      background: ${blue};
+      border-radius: 50px;
+      border: none;
+      font: bold 20px/1 'Pacifico';
+      color: ${pearl};
+      cursor: pointer;
+    }
   }
 `;
 
