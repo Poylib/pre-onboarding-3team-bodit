@@ -8,7 +8,7 @@ import { AiOutlineMenu } from 'react-icons/ai';
 import { AiOutlineClose } from 'react-icons/ai';
 import SensorCheckBox from '../SensorChart/SensorCheckBox';
 
-const Nav = props => {
+const Nav = () => {
   const [toggle, setToggle] = useState(false);
   const location = useLocation();
 
@@ -27,56 +27,62 @@ const Nav = props => {
               />
             </span>
           </div>
-
           {/* 로고밑콘텐츠영역 */}
           <div className='header-content-inner-box'>
+            {/* 이동메뉴 */}
+            <ul className='menu-list-box'>
+              <li>
+                <NavLink to='/'>SensorList</NavLink>
+              </li>
+              <li>
+                <NavLink to='/graph/target'>GraphScreen</NavLink>
+              </li>
+            </ul>
+
+            {/* 모바일 이동메뉴 */}
+            <ul className={toggle == true ? 'mb-menu-list-box-on' : 'mb-menu-list-box'}>
+              <div className='header-logo-box'>
+                <h1 className='logo-title'>BoDit!</h1>
+                <span className='close'>
+                  <AiOutlineClose
+                    onClick={() => {
+                      setToggle(!toggle);
+                    }}
+                  />
+                </span>
+              </div>
+              <li>
+                <NavLink to='/'>SensorList</NavLink>
+              </li>
+              <li>
+                <NavLink to='/graph/target'>GrphScreen</NavLink>
+              </li>
+            </ul>
+
+            {/* 체크박스 */}
+            {location.pathname !== '/graph/target' && (
+              <div className='fillter-inner-box'>
+                <SensorCheckBox />
+              </div>
+            )}
+
+            {/* 캘린더 */}
             <div className='calendar-inner-box'>
               {location.pathname === '/graph/target' && (
                 <div className='calender-btn'>
                   <Calendar />
                 </div>
               )}
-              {location.pathname !== '/graph/target' && <SensorCheckBox />}
-
-              {/* 이동메뉴 */}
-              <ul className='menu-list-box'>
-                <li>
-                  <NavLink to='/'>SensorList</NavLink>
-                </li>
-                <li>
-                  <NavLink to='/graph/target'>GraphScreen</NavLink>
-                </li>
-              </ul>
-
-              {/* 모바일 이동메뉴 */}
-              <ul className={toggle == true ? 'mb-menu-list-box-on' : 'mb-menu-list-box'}>
-                <div className='header-logo-box'>
-                  <h1 className='logo-title'>BoDit!</h1>
-                  <span className='close'>
-                    <AiOutlineClose
-                      onClick={() => {
-                        setToggle(!toggle);
-                      }}
-                    />
-                  </span>
-                </div>
-                <li>
-                  <NavLink to='/'>SensorList</NavLink>
-                </li>
-                <li>
-                  <NavLink to='/graph/target'>GrphScreen</NavLink>
-                </li>
-              </ul>
-
-              {/* Export */}
-              {location.pathname === '/graph' && (
-                <div className='export-btn-box'>
-                  <NavLink to='/' className='export-btn'>
-                    EXPORT
-                  </NavLink>
-                </div>
-              )}
             </div>
+
+            {/* Export */}
+            {location.pathname === '/graph/target' && (
+              <div className='export-btn-box'>
+                <NavLink to='/' className='export-btn'>
+                  EXPORT
+                </NavLink>
+              </div>
+            )}
           </div>
         </div>
       </Fade>
@@ -86,20 +92,21 @@ const Nav = props => {
 
 export default Nav;
 const NavBlock = styled.header`
-  @import url('https://fonts.googleapis.com/css2?family=Pacifico&display=swap');
   position: relative;
+  z-index: 10;
 
   .header-inner-box {
     position: fixed;
     top: 0;
     left: 0;
     width: 20%;
-    height: 100vh;
+    height: 100%;
     z-index: 10;
+
     /* 로고영역박스 */
     .header-logo-box {
       width: 100%;
-      height: 150px;
+      /* 취소버튼 */
       .close {
         display: none;
         position: absolute;
@@ -108,6 +115,7 @@ const NavBlock = styled.header`
         font-size: 30px;
         cursor: pointer;
       }
+      /* 로고 */
       .logo-title {
         display: flex;
         justify-content: center;
@@ -115,6 +123,7 @@ const NavBlock = styled.header`
         font: bold 50px/1 'Pacifico';
         color: ${blue};
       }
+      /* 반응형 메뉴 햄버거버튼 */
       .mb-menu-btn {
         display: none;
         position: absolute;
@@ -124,7 +133,6 @@ const NavBlock = styled.header`
         cursor: pointer;
       }
     }
-
     /* 로고밑콘텐츠영역 */
     .header-content-inner-box {
       display: flex;
@@ -132,10 +140,12 @@ const NavBlock = styled.header`
       align-items: center;
       width: 100%;
       height: 100%;
+      margin-top: 30px;
       /* 캘린더박스 */
       .calendar-inner-box {
         width: 100%;
         height: 10%;
+        padding: 20px 0px;
         .calender-btn {
           display: flex;
           justify-content: center;
@@ -146,17 +156,16 @@ const NavBlock = styled.header`
           color: ${blue};
         }
       }
-
       /* 메뉴리스트박스 */
       .menu-list-box {
         display: flex;
         flex-direction: column;
         align-items: center;
         width: 100%;
-        height: 60%;
+        height: 15%;
+        margin: 20px 0px;
         li {
           width: 100%;
-          padding: 10px;
           margin-bottom: 10px;
           transition: all 0.5s;
           &:hover {
@@ -177,9 +186,9 @@ const NavBlock = styled.header`
           }
         }
       }
-
       /* 모바일 메뉴리스트박스 */
       .mb-menu-list-box {
+        display: block;
         position: absolute;
         top: -1000px;
         right: 0%;
@@ -187,6 +196,7 @@ const NavBlock = styled.header`
         height: 100vh;
         background-color: #ffffffe4;
         transition: all 1s;
+        opacity: 0;
         .close {
           position: absolute;
         }
@@ -205,6 +215,7 @@ const NavBlock = styled.header`
           }
         }
       }
+      /* 모바일  메뉴리스트박스  */
       .mb-menu-list-box-on {
         position: absolute;
         top: 0;
@@ -212,6 +223,7 @@ const NavBlock = styled.header`
         width: 100%;
         height: 100vh;
         background-color: #fff;
+        z-index: 3;
         transition: all 1s;
         .close {
           position: absolute;
@@ -237,6 +249,14 @@ const NavBlock = styled.header`
         }
       }
 
+      /* 필터박스 */
+      .fillter-inner-box {
+        width: 90%;
+        height: 450px;
+        border: 1px solid ${blue};
+      }
+
+      /* 익스폴트 버튼 */
       .export-btn-box {
         position: absolute;
         bottom: 50px;
@@ -245,6 +265,7 @@ const NavBlock = styled.header`
         justify-content: center;
         align-items: center;
         width: 100%;
+        padding: 20px 0px;
         .export-btn {
           display: flex;
           justify-content: center;
@@ -261,15 +282,16 @@ const NavBlock = styled.header`
     }
   }
 
+  /* ============= ======= 1024px ============ ======== */
   @media screen and (max-width: 1024px) {
     .header-inner-box {
       /* 로고영역박스 */
       .header-logo-box {
+        /* 로고글씨 */
         .logo-title {
           font: bold 40px/1 'Pacifico';
         }
       }
-
       /* 로고밑콘텐츠영역 */
       .header-content-inner-box {
         display: flex;
@@ -281,6 +303,7 @@ const NavBlock = styled.header`
         .calendar-inner-box {
           width: 100%;
           height: 10%;
+          /* 캘린더  */
           .calender-btn {
             display: flex;
             justify-content: center;
@@ -298,6 +321,7 @@ const NavBlock = styled.header`
           justify-content: center;
           align-items: center;
           width: 100%;
+          /* export 버튼 */
           .export-btn {
             display: flex;
             justify-content: center;
@@ -314,13 +338,14 @@ const NavBlock = styled.header`
       }
     }
   }
+  /* ============= ======= 890px ============ ======== */
   @media screen and (max-width: 890px) {
     .header-inner-box {
       position: unset;
       top: 0;
       left: 0;
       width: 100%;
-      height: 50px;
+      height: 100%;
       /* 로고영역박스 */
       .header-logo-box {
         width: 100%;
@@ -347,6 +372,7 @@ const NavBlock = styled.header`
           right: 50px;
           font-size: 30px;
           cursor: pointer;
+          z-index: 1;
         }
       }
 
@@ -356,7 +382,7 @@ const NavBlock = styled.header`
         flex-direction: column;
         align-items: center;
         width: 100%;
-        height: 100px;
+        height: 100%;
         background-color: ${blue};
         /* 캘린더박스 */
         .calendar-inner-box {
@@ -380,6 +406,7 @@ const NavBlock = styled.header`
         /* 메뉴리스트박스 */
         .menu-list-box {
           display: none;
+
           li {
             display: none;
             width: 100%;
@@ -405,6 +432,13 @@ const NavBlock = styled.header`
           }
         }
 
+        /* 필터박스 */
+        .fillter-inner-box {
+          width: 100%;
+          height: 100%;
+          border: 1px solid ${blue};
+        }
+
         .export-btn-box {
           position: initial;
           top: 0;
@@ -428,9 +462,5 @@ const NavBlock = styled.header`
         }
       }
     }
-  }
-  @media screen and (max-width: 480px) {
-  }
-  @media screen and (max-width: 378px) {
   }
 `;
