@@ -8,7 +8,9 @@ import { blue, pearl } from '../../theme';
 
 const Calendar = () => {
   const navigate = useNavigate();
-  const [date, setDate] = useState(new Date());
+  const today = new Date();
+  const yesterday = new Date(today.setDate(today.getDate() - 1));
+  const [date, setDate] = useState(yesterday);
 
   useEffect(() => {
     navigate('/graph/target?' + calendarQuery(date));
@@ -29,7 +31,7 @@ const Calendar = () => {
   return (
     <CalendarBlock>
       <img className='calendar-icon' src={calendarBlue} />
-      <DatePicker shouldCloseOnSelect={false} maxDate={new Date()} className='container' dateFormat='yyyy/MM/dd' dateFormatCalendar='yyyy년 M월' selected={date} onChange={date => setDate(date)} />
+      <DatePicker shouldCloseOnSelect={false} maxDate={yesterday} className='container' dateFormat='yyyy/MM/dd' dateFormatCalendar='yyyy년 M월' selected={date} onChange={date => setDate(date)} />
     </CalendarBlock>
   );
 };

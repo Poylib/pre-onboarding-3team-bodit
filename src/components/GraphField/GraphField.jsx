@@ -1,6 +1,6 @@
 import axios from 'axios';
 import Bounce from 'react-reveal/Bounce';
-import { useLocation } from 'react-router-dom';
+import { Navigate, useLocation, useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import { useEffect, useState } from 'react';
 import Graph from './Graph';
