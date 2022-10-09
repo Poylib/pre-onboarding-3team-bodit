@@ -162,7 +162,7 @@ const SensorCheckBoxBlock = styled.div`
   border-bottom: 1px solid ${blue};
   color: ${blue};
   position: relative;
-  z-index: 10;
+  z-index: 2;
   .margined {
     margin-bottom: 15px;
   }
