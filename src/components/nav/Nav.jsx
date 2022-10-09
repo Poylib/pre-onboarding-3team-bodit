@@ -27,7 +27,6 @@ const Nav = () => {
               />
             </span>
           </div>
-
           {/* 로고밑콘텐츠영역 */}
           <div className='header-content-inner-box'>
             {/* 이동메뉴 */}
@@ -107,7 +106,6 @@ const NavBlock = styled.header`
     /* 로고영역박스 */
     .header-logo-box {
       width: 100%;
-      /* height: 50px; */
       /* 취소버튼 */
       .close {
         display: none;

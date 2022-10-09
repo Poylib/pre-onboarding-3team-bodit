@@ -1,12 +1,10 @@
 import axios from 'axios';
 import Bounce from 'react-reveal/Bounce';
-import { useEffect, useState } from 'react';
+import { useLocation } from 'react-router-dom';
 import styled from 'styled-components';
+import { useEffect, useState } from 'react';
 import Graph from './Graph';
 import { blue } from '../../theme';
-import { AiFillQuestionCircle } from 'react-icons/ai';
-import { useLocation } from 'react-router-dom';
-import ReactTooltip from 'react-tooltip';
 
 const GraphField = () => {
   const location = useLocation();
