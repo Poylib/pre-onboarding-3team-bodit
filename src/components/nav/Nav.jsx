@@ -69,14 +69,14 @@ const Nav = props => {
               </ul>
 
               {/* 체크박스 */}
-              {location.pathname !== '/graph' && (
+              {location.pathname !== '/graph/target' && (
                 <div className='fillter-inner-box'>
                   <SensorCheckBox />
                 </div>
               )}
 
               {/* Export */}
-              {location.pathname === '/graph' && (
+              {location.pathname === '/graph/target' && (
                 <div className='export-btn-box'>
                   <NavLink to='/' className='export-btn'>
                     EXPORT
@@ -142,6 +142,7 @@ const NavBlock = styled.header`
       .calendar-inner-box {
         width: 100%;
         height: 10%;
+        padding: 20px 0px;
         .calender-btn {
           display: flex;
           justify-content: center;
@@ -187,6 +188,7 @@ const NavBlock = styled.header`
 
       /* 모바일 메뉴리스트박스 */
       .mb-menu-list-box {
+        display: block;
         position: absolute;
         top: -1000px;
         right: 0%;
@@ -194,6 +196,7 @@ const NavBlock = styled.header`
         height: 100vh;
         background-color: #ffffffe4;
         transition: all 1s;
+        opacity: 0;
         .close {
           position: absolute;
         }
@@ -219,6 +222,7 @@ const NavBlock = styled.header`
         width: 100%;
         height: 100vh;
         background-color: #fff;
+        z-index: 3;
         transition: all 1s;
         .close {
           position: absolute;
@@ -260,6 +264,7 @@ const NavBlock = styled.header`
         justify-content: center;
         align-items: center;
         width: 100%;
+        padding: 20px 0px;
         .export-btn {
           display: flex;
           justify-content: center;
@@ -335,7 +340,7 @@ const NavBlock = styled.header`
       top: 0;
       left: 0;
       width: 100%;
-      height: 50px;
+      height: 100%;
       /* 로고영역박스 */
       .header-logo-box {
         width: 100%;
@@ -362,6 +367,7 @@ const NavBlock = styled.header`
           right: 50px;
           font-size: 30px;
           cursor: pointer;
+          z-index: 1;
         }
       }
 
@@ -371,7 +377,7 @@ const NavBlock = styled.header`
         flex-direction: column;
         align-items: center;
         width: 100%;
-        height: 100px;
+        height: 100%;
         background-color: ${blue};
         /* 캘린더박스 */
         .calendar-inner-box {
@@ -395,6 +401,7 @@ const NavBlock = styled.header`
         /* 메뉴리스트박스 */
         .menu-list-box {
           display: none;
+
           li {
             display: none;
             width: 100%;
@@ -419,6 +426,13 @@ const NavBlock = styled.header`
             }
           }
         }
+
+              /* 필터박스 */
+      .fillter-inner-box {
+        width: 100%;
+        height: 100%;
+        border: 1px solid ${blue};
+      }
 
         .export-btn-box {
           position: initial;

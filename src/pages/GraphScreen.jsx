@@ -31,7 +31,6 @@ const StyledGraphScreen = styled.div`
   @media screen and (max-width: 890px) {
     width: 100%;
     margin-left: 0;
-    margin-top: 250px;
   }
 
   /* ============= ======= 480px ============ ======== */
