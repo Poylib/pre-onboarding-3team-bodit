@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import { useState, useEffect } from 'react';
-
 import { blue, pearl } from '../../theme';
+import { Fade } from 'react-reveal';
 
 const ChartRow = props => {
   const { chartdata, index } = props;
@@ -29,6 +29,8 @@ const ChartRow = props => {
   }, [chartdata]);
 
   return (
+
+   
     <RowTr onMouseOver={() => setHoverState(true)} onMouseOut={() => setHoverState(false)} hoverOn={hoverState}>
       <th>{index}</th>
       {rowArray.map((rowdata, index) => {
@@ -42,6 +44,7 @@ const ChartRow = props => {
         return <td key={index + chartdata.thingName}>{rowdata}</td>;
       })}
     </RowTr>
+
   );
 };
 

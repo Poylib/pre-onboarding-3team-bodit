@@ -140,12 +140,13 @@ const SensorCheckBox = ({ checkedArray, setCheckedArray }) => {
         </div>
         <button>button</button>
       </SensorCheckBoxBlock>
-    </Nav>
+      </Nav>
   );
 };
 
 const SensorCheckBoxBlock = styled.div`
   width: 100%;
+  height: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;

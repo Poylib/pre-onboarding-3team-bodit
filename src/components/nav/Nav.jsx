@@ -8,6 +8,7 @@ import { AiOutlineMenu } from 'react-icons/ai';
 import { AiOutlineClose } from 'react-icons/ai';
 import SensorCheckBox from '../SensorChart/SensorCheckBox';
 
+
 const Nav = props => {
   const [toggle, setToggle] = useState(false);
   const location = useLocation();
@@ -66,6 +67,7 @@ const Nav = props => {
                   <NavLink to='/graph'>GrphScreen</NavLink>
                 </li>
               </ul>
+
 
               {/* Export */}
               <div className='export-btn-box'>
@@ -234,6 +236,17 @@ const NavBlock = styled.header`
         }
       }
 
+      /* 필터박스 */
+      .fillter-inner-box{
+        position: absolute;
+        top: 35%;
+        left: 15px;
+        width: 90%;
+        height: 450px;
+        border: 1px solid ${blue};
+      }
+
+      /* 익스폴트 버튼 */
       .export-btn-box {
         position: absolute;
         bottom: 50px;

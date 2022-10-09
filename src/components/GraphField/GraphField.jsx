@@ -5,6 +5,7 @@ import Graph from './Graph';
 import { blue } from '../../theme';
 import Bounce from 'react-reveal/Bounce';
 import { AiFillQuestionCircle } from 'react-icons/ai';
+import ReactTooltip from 'react-tooltip';
 
 const GraphField = () => {
   const [tempData, setTempData] = useState([]);
@@ -96,7 +97,7 @@ const GraphField = () => {
             적용하기
           </button>
           <span className='tooltip'>
-            <AiFillQuestionCircle />
+            <span className='tiptext'>그래프에서 원하는 시간대를 클릭하면 해당시간부터 6시간 간격으로 그래프가 확대됩니다.</span>
           </span>
         </div>
       </TargetTime>
@@ -127,19 +128,39 @@ const GraphFieldWrapper = styled.div`
   background-color: #ffffffd5;
   .time-inner-box {
     display: flex;
-    justify-content: flex-end;
+    justify-content: flex-start;
+    align-items: center;
+    flex-direction: column;
     width: 100%;
     .time {
-      margin-right: 20px;
+      margin-bottom: 20px;
       font: bold 30px/1 'apple';
+      color: ${blue};
     }
     .time-btn {
       display: flex;
       justify-content: center;
       align-items: center;
-      font: bold 18px/1 'apple';
-      background-color: #ffffff86;
-      border: 1px solid #ddd;
+      width: 150px;
+      height: 30px;
+      margin-bottom: 20px;
+      font: bold 15px/1 'apple';
+      color: ${blue};
+      background: none;
+      border: 1px solid ${blue};;
+      transition: all 0.5s;
+      &:hover{
+        box-shadow: 1px 1px 2px #000;
+      }
+    }
+    .tooltip {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 100%;
+      margin: 10px 0px 10px 0px;
+      font-size: 12px;
+      color: ${blue};
     }
   }
 

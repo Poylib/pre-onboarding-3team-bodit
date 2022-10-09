@@ -6,6 +6,7 @@ import { BsFillTriangleFill } from 'react-icons/bs';
 import { header } from '../../assets/sensor/header';
 import ChartRow from './ChartRow';
 import GraphScreen from '../../pages/GraphScreen';
+import { Fade } from 'react-reveal';
 
 const SensorChart = ({ checkedArray }) => {
   const [chartData, setChartData] = useState([]);
@@ -159,6 +160,7 @@ const SensorChart = ({ checkedArray }) => {
 
   return (
     <SensorChartBlock>
+       <Fade top cascade>
       <table>
         <thead className='fixed'>
           <tr>
@@ -178,6 +180,7 @@ const SensorChart = ({ checkedArray }) => {
           })}
         </tbody>
       </table>
+      </Fade>
     </SensorChartBlock>
   );
 };
