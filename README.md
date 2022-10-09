@@ -130,7 +130,7 @@ npm run dev
 <br/>
 <br/>
 
-## ✅ 그래프확대 기능 구현
+## ✅ 시간별 그래프UI 구현
 
 ![그래프확대](https://user-images.githubusercontent.com/87900492/194771032-89b84d0d-efd9-44be-ba59-e5a44b313819.gif)
 <br/>
@@ -151,12 +151,6 @@ npm run dev
 ## ✅ 그래프 반응형UI 구현
 
 ![그래프반응형](https://user-images.githubusercontent.com/87900492/194771029-23f51b58-f44c-4635-b1cc-ed9570135b85.gif)
-<br/>
-<br/>
-
-## ✅ 메뉴바 반응형UI 구현
-
-![반응형메뉴바UI](https://user-images.githubusercontent.com/87900492/194771196-294c8c33-357e-4e5e-812c-4d2a5774612b.png)
 <br/>
 <br/>
 

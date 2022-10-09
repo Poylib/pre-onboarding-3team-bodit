@@ -28,7 +28,7 @@ const SensorCheckBox = () => {
 
   return (
     <SensorCheckBoxBlock>
-      <form onSubmit={() => resetHandler()}>
+      <div>
         <div className='scroll'>
           <div className='margined'>
             <span>Sensor ID</span>
@@ -145,9 +145,16 @@ const SensorCheckBox = () => {
               </label>
             </div>
           </div>
-          <button>reset</button>
+          <button
+            onClick={() => {
+              setCheckedArray({});
+              location.reload();
+            }}
+          >
+            <span>reset</span>
+          </button>
         </div>
-      </form>
+      </div>
     </SensorCheckBoxBlock>
   );
 };
