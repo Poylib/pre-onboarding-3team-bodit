@@ -1,9 +1,9 @@
 import axios from 'axios';
+import Bounce from 'react-reveal/Bounce';
 import { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import Graph from './Graph';
 import { blue } from '../../theme';
-import Bounce from 'react-reveal/Bounce';
 import { AiFillQuestionCircle } from 'react-icons/ai';
 import { useLocation } from 'react-router-dom';
 

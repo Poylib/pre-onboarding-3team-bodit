@@ -1,7 +1,6 @@
 import styled from 'styled-components';
 import axios from 'axios';
 import { useEffect, useState, useContext } from 'react';
-
 import { BsFillTriangleFill } from 'react-icons/bs';
 import { header } from '../../assets/sensor/header';
 import ChartRow from './ChartRow';
@@ -9,7 +8,6 @@ import { CheckboxContext } from '../../App';
 
 const SensorChart = () => {
   const [chartData, setChartData] = useState([]);
-  const [loading, setLoading] = useState(false);
   const [optionCheck, setOptionCheck] = useState('');
   const [ascending, setAscending] = useState(true);
 
@@ -23,16 +21,13 @@ const SensorChart = () => {
 
   useEffect(() => {
     (async () => {
-      setLoading(true);
       try {
         const { data } = await axios('/data/sensorInfoList.json');
-        setLoading(false);
         setChartData(data);
         // 실제 보여주는 데이터에도 data 추가
         setDisplayData(data);
       } catch (error) {
         console.log(error);
-        setLoading(true);
       }
     })();
   }, []);
@@ -202,15 +197,15 @@ const SensorChartBlock = styled.div`
     position: -webkit-sticky;
     position: sticky;
     top: 0;
+    height: 30px;
     overflow: hidden;
     line-height: 30px;
-    height: 30px;
     background-color: #ffffff;
     .headline {
       font-size: 8px;
       span {
-        font-size: 16px;
         margin-right: 5px;
+        font-size: 16px;
       }
     }
   }

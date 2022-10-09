@@ -30,7 +30,7 @@ const Calendar = () => {
   return (
     <CalendarBlock>
       <img className='calendar-icon' src={calendarBlue} />
-      <DatePicker shouldCloseOnSelect={false} className='container' dateFormat='yyyy/MM/dd' dateFormatCalendar='yyyy년 M월' selected={date} onChange={date => setDate(date)} />
+      <DatePicker shouldCloseOnSelect={false} maxDate={new Date()} className='container' dateFormat='yyyy/MM/dd' dateFormatCalendar='yyyy년 M월' selected={date} onChange={date => setDate(date)} />
     </CalendarBlock>
   );
 };
