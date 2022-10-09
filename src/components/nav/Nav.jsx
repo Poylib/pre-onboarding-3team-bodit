@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Fade } from 'react-reveal';
 import { NavLink, useLocation } from 'react-router-dom';
 import styled from 'styled-components';
@@ -7,11 +7,43 @@ import Calendar from '../Calender/Calendar';
 import { AiOutlineMenu } from 'react-icons/ai';
 import { AiOutlineClose } from 'react-icons/ai';
 import SensorCheckBox from '../SensorChart/SensorCheckBox';
+import { CSVLink } from 'react-csv';
 
 const Nav = () => {
   const [toggle, setToggle] = useState(false);
   const location = useLocation();
 
+  const [fileName, setFileName] = useState([]);
+  const [fileHeader, setFileHeader] = useState([]);
+  const [fileData, setFileData] = useState([]);
+
+  // useEffect(() => {
+  //   makeCsv();
+  // }, [localStorage]);
+
+  const makeCsv = () => {
+    const graphChannel = JSON.parse(localStorage.getItem('graphChannel'));
+    const graphFeeds = JSON.parse(localStorage.getItem('graphFeeds'));
+    let csvData = [];
+
+    const csvName = `Bodit_${graphFeeds[0].created_at.substring(0, 10)}`;
+    console.log(graphFeeds);
+
+    const csvHeader = [
+      { label: 'Date', key: 'date' },
+      { label: 'Temperature (°C)', key: 'temp' },
+      { label: 'Humidity (%)', key: 'humidity' },
+      { label: 'Pressure (hPa)', key: 'pressure' },
+    ];
+
+    graphFeeds.map(feed => {
+      csvData.push({ date: feed.created_at, temp: feed.field1, humidity: feed.field2, pressure: feed.field3 });
+    });
+
+    setFileName(csvName);
+    setFileHeader(csvHeader);
+    setFileData(csvData);
+  };
   return (
     <NavBlock>
       <Fade>
@@ -69,11 +101,11 @@ const Nav = () => {
               </ul>
 
               {/* Export */}
-              {location.pathname === '/graph' && (
+              {location.pathname === '/graph/target' && (
                 <div className='export-btn-box'>
-                  <NavLink to='/' className='export-btn'>
+                  <CSVLink className='export-btn' onClick={makeCsv} filename={fileName} headers={fileHeader} data={fileData}>
                     EXPORT
-                  </NavLink>
+                  </CSVLink>
                 </div>
               )}
             </div>

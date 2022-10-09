@@ -34,7 +34,10 @@ const GraphField = () => {
             ? `https://api.thingspeak.com/channels/1348864/feeds.json?api_key=6SKW0U97IPV2QQV9&${targetTimeQuery}`
             : `https://api.thingspeak.com/channels/1348864/feeds.json?api_key=6SKW0U97IPV2QQV9&${calendarDate}&results=140&average=60`
         );
+        console.log(`https://api.thingspeak.com/channels/1348864/feeds.json?api_key=6SKW0U97IPV2QQV9&${calendarDate}&results=140&average=60`);
         if (feeds.length > 0) {
+          localStorage.setItem('graphChannel', JSON.stringify(channel));
+          localStorage.setItem('graphFeeds', JSON.stringify(feeds));
           setTempData([{ id: channel.field1, data: extract('field1', feeds) }]);
           setHumidityData([{ id: channel.field2, data: extract('field2', feeds) }]);
           setPressureData([{ id: channel.field3, data: extract('field3', feeds) }]);
@@ -110,7 +113,7 @@ const GraphField = () => {
             <Graph data={humidityData} unit={'Humidity (%)'} color={'red'} getTargetTime={getTargetTime} />
           </Bounce>
           <Bounce delay={1000}>
-            <Graph data={pressureData} unit={'pressure (hPa)'} color={'aqua'} getTargetTime={getTargetTime} />
+            <Graph data={pressureData} unit={'Pressure (hPa)'} color={'aqua'} getTargetTime={getTargetTime} />
           </Bounce>
         </div>
       ) : (
