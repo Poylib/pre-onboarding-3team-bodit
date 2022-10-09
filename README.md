@@ -132,7 +132,7 @@ npm run dev
 
 ## ✅ 시간별 그래프UI 구현
 
-<img src="[이미지주소.png](https://user-images.githubusercontent.com/87900492/194771032-89b84d0d-efd9-44be-ba59-e5a44b313819.gif)" width="500" height="500"/>
+<img src="https://user-images.githubusercontent.com/87900492/194771032-89b84d0d-efd9-44be-ba59-e5a44b313819.gif" width="500" height="500"/>
 <br/>
 <br/>
 
