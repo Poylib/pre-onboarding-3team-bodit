@@ -1,5 +1,4 @@
-import { blue, pearl } from '../theme';
-import { Fade } from 'react-reveal';
+import { Fade } from 'react-greveal';
 import styled from 'styled-components';
 import GraphField from '../components/GraphField/GraphField';
 

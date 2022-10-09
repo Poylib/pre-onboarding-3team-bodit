@@ -7,7 +7,7 @@ import Calendar from '../Calender/Calendar';
 import { AiOutlineMenu } from 'react-icons/ai';
 import { AiOutlineClose } from 'react-icons/ai';
 
-const Nav = () => {
+const Nav = props => {
   const [toggle, setToggle] = useState(false);
   const location = useLocation();
   console.log('ahk', location);
@@ -31,7 +31,7 @@ const Nav = () => {
           {/* 로고밑콘텐츠영역 */}
           <div className='header-content-inner-box'>
             <div className='calendar-inner-box'>
-              <div className='calender-btn'>{location.pathname === '/graph' && <Calendar />}</div>
+              <div className='calender-btn'>{location.pathname === '/graph' ? <Calendar /> : props.children}</div>
 
               {/* 이동메뉴 */}
               <ul className='menu-list-box'>
@@ -93,14 +93,14 @@ const NavBlock = styled.header`
     .header-logo-box {
       width: 100%;
       height: 150px;
-      .close{
+      .close {
         display: none;
-          position: absolute;
-          top: 50px;
-          right: 50px;
-          font-size: 30px;
-          cursor: pointer;
-        }
+        position: absolute;
+        top: 50px;
+        right: 50px;
+        font-size: 30px;
+        cursor: pointer;
+      }
       .logo-title {
         display: flex;
         justify-content: center;
@@ -164,7 +164,7 @@ const NavBlock = styled.header`
             font: 30px/1 'apple';
             color: ${blue};
             transition: all 0.5s;
-             &:hover {
+            &:hover {
               color: ${pearl};
             }
           }
@@ -223,7 +223,7 @@ const NavBlock = styled.header`
             font: bold 25px/1 'apple';
             color: #ddd;
             transition: all 0.5s;
-            &:hover{
+            &:hover {
               color: ${blue};
             }
           }
@@ -253,10 +253,6 @@ const NavBlock = styled.header`
       }
     }
   }
-
-
-
-
 
   @media screen and (max-width: 1024px) {
     .header-inner-box {
@@ -329,7 +325,7 @@ const NavBlock = styled.header`
           font: bold 50px/1 'Pacifico';
         }
 
-        .close{
+        .close {
           display: block;
           position: absolute;
           top: 50px;
