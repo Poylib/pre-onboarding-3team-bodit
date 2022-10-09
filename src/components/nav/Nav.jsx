@@ -26,24 +26,29 @@ const Nav = () => {
     const graphFeeds = JSON.parse(localStorage.getItem('graphFeeds'));
     let csvData = [];
 
-    const csvName = `Bodit_${graphFeeds[0].created_at.substring(0, 10)}`;
-    console.log(graphFeeds);
+    if (!!graphFeeds.length) {
+      const csvName = `Bodit_${graphFeeds[0].created_at.substring(0, 10)}`;
+      const csvHeader = [
+        { label: 'Date', key: 'date' },
+        { label: 'Temperature (°C)', key: 'temp' },
+        { label: 'Humidity (%)', key: 'humidity' },
+        { label: 'Pressure (hPa)', key: 'pressure' },
+      ];
+      graphFeeds.map(feed => {
+        csvData.push({ date: feed.created_at, temp: feed.field1, humidity: feed.field2, pressure: feed.field3 });
 
-    const csvHeader = [
-      { label: 'Date', key: 'date' },
-      { label: 'Temperature (°C)', key: 'temp' },
-      { label: 'Humidity (%)', key: 'humidity' },
-      { label: 'Pressure (hPa)', key: 'pressure' },
-    ];
-
-    graphFeeds.map(feed => {
-      csvData.push({ date: feed.created_at, temp: feed.field1, humidity: feed.field2, pressure: feed.field3 });
-    });
-
-    setFileName(csvName);
-    setFileHeader(csvHeader);
-    setFileData(csvData);
+        setFileName(csvName);
+        setFileHeader(csvHeader);
+        setFileData(csvData);
+      });
+    } else {
+      alert('데이터가 없습니다.');
+      setFileName('');
+      setFileHeader('');
+      setFileData('');
+    }
   };
+
   return (
     <NavBlock>
       <Fade>

@@ -43,10 +43,14 @@ const GraphField = () => {
           setPressureData([{ id: channel.field3, data: extract('field3', feeds) }]);
           setIsData(true);
         } else {
+          localStorage.setItem('graphChannel', JSON.stringify({}));
+          localStorage.setItem('graphFeeds', JSON.stringify({}));
           setIsData(false);
         }
       } catch (error) {
         console.log(error);
+        localStorage.setItem('graphChannel', JSON.stringify({}));
+        localStorage.setItem('graphFeeds', JSON.stringify({}));
         setIsData(false);
         // loading
       }
