@@ -15,7 +15,7 @@ const GraphField = () => {
   const [targetRange, setTargetRange] = useState([]);
   const [targetTimeQuery, setTargetTimeQuery] = useState('');
   const [calendarDate, setCalendarDate] = useState('');
-  const [isData, setIsData] = useState(false);
+  const [isData, setIsData] = useState(true);
 
   useEffect(() => {
     setCalendarDate(location.search.replace('?', ''));
