@@ -1,4 +1,4 @@
-import { Route, Routes } from 'react-router-dom'
+import { Route, Routes } from 'react-router-dom';
 import Nav from './components/nav/Nav';
 import GlobalStyle from './GrobalStyle';
 import GraphScreen from './pages/GraphScreen';

@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { Fade } from 'react-reveal';
-import { NavLink } from 'react-router-dom';
+import { NavLink, useLocation } from 'react-router-dom';
 import styled from 'styled-components';
 import { blue, pearl } from '../../theme';
 import Calendar from '../Calender/Calendar';
@@ -9,24 +9,29 @@ import { AiOutlineClose } from 'react-icons/ai';
 
 const Nav = () => {
   const [toggle, setToggle] = useState(false);
+  const location = useLocation();
+  console.log('ahk', location);
+
   return (
     <NavBlock>
       <Fade>
         {/* 로고영역박스 */}
         <div className='header-inner-box'>
           <div className='header-logo-box'>
-            <h1 className='logo-title' >BoDit!</h1>
+            <h1 className='logo-title'>BoDit!</h1>
             <span className='mb-menu-btn'>
-              <AiOutlineMenu onClick={()=>{setToggle(!toggle)}} />
+              <AiOutlineMenu
+                onClick={() => {
+                  setToggle(!toggle);
+                }}
+              />
             </span>
           </div>
 
           {/* 로고밑콘텐츠영역 */}
           <div className='header-content-inner-box'>
             <div className='calendar-inner-box'>
-              <div className='calender-btn'>
-                <Calendar />
-              </div>
+              <div className='calender-btn'>{location.pathname === '/graph' && <Calendar />}</div>
 
               {/* 이동메뉴 */}
               <ul className='menu-list-box'>
@@ -34,7 +39,7 @@ const Nav = () => {
                   <NavLink to='/'>SensorList</NavLink>
                 </li>
                 <li>
-                  <NavLink to='/graph'>GrphScreen</NavLink>
+                  <NavLink to='/graph'>GraphScreen</NavLink>
                 </li>
               </ul>
 
@@ -42,7 +47,13 @@ const Nav = () => {
               <ul className={toggle == true ? 'mb-menu-list-box-on' : 'mb-menu-list-box'}>
                 <div className='header-logo-box'>
                   <h1 className='logo-title'>BoDit!</h1>
-                  <span className='close'><AiOutlineClose onClick={()=>{setToggle(!toggle)}}/></span>
+                  <span className='close'>
+                    <AiOutlineClose
+                      onClick={() => {
+                        setToggle(!toggle);
+                      }}
+                    />
+                  </span>
                 </div>
                 <li>
                   <NavLink to='/'>SensorList</NavLink>
@@ -167,9 +178,9 @@ const NavBlock = styled.header`
         right: 0%;
         width: 100%;
         height: 100vh;
-        background-color:#ffffffe4;
+        background-color: #ffffffe4;
         transition: all 1s;
-        .close{
+        .close {
           position: absolute;
         }
         li {
@@ -179,10 +190,10 @@ const NavBlock = styled.header`
           width: 100%;
           height: 50px;
           transition: all 0.5s;
-          &:hover{
+          &:hover {
             background: #fff;
           }
-          a{
+          a {
             font: bold 25px/1 'apple';
           }
         }
@@ -193,9 +204,9 @@ const NavBlock = styled.header`
         right: 0%;
         width: 100%;
         height: 100vh;
-        background-color:#fff;
+        background-color: #fff;
         transition: all 1s;
-        .close{
+        .close {
           position: absolute;
         }
         li {
@@ -205,10 +216,10 @@ const NavBlock = styled.header`
           width: 100%;
           height: 50px;
           transition: all 0.5s;
-          &:hover{
+          &:hover {
             background: #fff;
           }
-          a{
+          a {
             font: bold 25px/1 'apple';
             color: #ddd;
             transition: all 0.5s;
@@ -317,6 +328,7 @@ const NavBlock = styled.header`
           padding-top: 50px;
           font: bold 50px/1 'Pacifico';
         }
+
         .close{
           display: block;
           position: absolute;
