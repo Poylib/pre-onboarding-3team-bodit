@@ -1,4 +1,4 @@
-import { Fade } from 'react-greveal';
+import { Fade } from 'react-reveal';
 import styled from 'styled-components';
 import GraphField from '../components/GraphField/GraphField';
 

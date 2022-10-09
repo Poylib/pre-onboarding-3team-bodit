@@ -1,13 +1,13 @@
 import { Fade } from 'react-reveal';
 import styled from 'styled-components';
 import { blue, pearl } from '../theme';
-
+import SensorPage from './SensorPage';
 const SensorList = () => {
   return (
     <Fade>
       <StyledSensor>
         <div className='sensor-inner-box'>
-          <span>SensorList</span>
+          <SensorPage />
         </div>
       </StyledSensor>
     </Fade>

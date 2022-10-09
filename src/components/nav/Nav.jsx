@@ -6,11 +6,11 @@ import { blue, pearl } from '../../theme';
 import Calendar from '../Calender/Calendar';
 import { AiOutlineMenu } from 'react-icons/ai';
 import { AiOutlineClose } from 'react-icons/ai';
+import SensorCheckBox from '../SensorChart/SensorCheckBox';
 
 const Nav = props => {
   const [toggle, setToggle] = useState(false);
   const location = useLocation();
-  console.log('ahk', location);
 
   return (
     <NavBlock>
@@ -31,7 +31,11 @@ const Nav = props => {
           {/* 로고밑콘텐츠영역 */}
           <div className='header-content-inner-box'>
             <div className='calendar-inner-box'>
-              <div className='calender-btn'>{location.pathname === '/graph' ? <Calendar /> : props.children}</div>
+              {location.pathname === '/graph' && (
+                <div className='calender-btn'>
+                  <Calendar />
+                </div>
+              )}
 
               {/* 이동메뉴 */}
               <ul className='menu-list-box'>

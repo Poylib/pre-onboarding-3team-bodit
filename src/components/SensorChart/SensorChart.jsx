@@ -158,33 +158,27 @@ const SensorChart = ({ checkedArray }) => {
   }, [optionCheck, checkedArray]);
 
   return (
-    // 2페이지 레이아웃으로 감싸기 - 시작
-    <GraphScreen>
-      {/* 2페이지 레이아웃으로 감싸기 - 끝 */}
-      <SensorChartBlock>
-        <table>
-          <thead className='fixed'>
-            <tr>
-              {header.map((category, index) => {
-                return (
-                  <td className='headline' key={`${category.id + index}`} onClick={() => setOptionCheck(category.id)}>
-                    <span>{category.name}</span>
-                    {category.sort ? '' : <BsFillTriangleFill />}
-                  </td>
-                );
-              })}
-            </tr>
-          </thead>
-          <tbody>
-            {displayData.map((sensorList, index) => {
-              return <ChartRow key={`${sensorList.thingName + index}`} chartdata={sensorList} index={index} />;
+    <SensorChartBlock>
+      <table>
+        <thead className='fixed'>
+          <tr>
+            {header.map((category, index) => {
+              return (
+                <td className='headline' key={`${category.id + index}`} onClick={() => setOptionCheck(category.id)}>
+                  <span>{category.name}</span>
+                  {category.sort ? '' : <BsFillTriangleFill />}
+                </td>
+              );
             })}
-          </tbody>
-        </table>
-      </SensorChartBlock>
-      {/* 2페이지 레이아웃으로 감싸기 - 시작 */}
-    </GraphScreen>
-    // 2페이지 레이아웃으로 감싸기 - 끝
+          </tr>
+        </thead>
+        <tbody>
+          {displayData.map((sensorList, index) => {
+            return <ChartRow key={`${sensorList.thingName + index}`} chartdata={sensorList} index={index} />;
+          })}
+        </tbody>
+      </table>
+    </SensorChartBlock>
   );
 };
 
