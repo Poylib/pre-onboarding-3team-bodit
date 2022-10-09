@@ -200,7 +200,9 @@ const SensorChartBlock = styled.div`
   width: 100%;
   overflow: scroll;
   // 스크롤 추가 - 끝
-
+  table {
+    width: 100%;
+  }
   td {
     text-align: center;
   }
