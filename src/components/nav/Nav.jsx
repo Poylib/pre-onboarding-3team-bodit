@@ -6,6 +6,7 @@ import { blue, pearl } from '../../theme';
 import Calendar from '../Calender/Calendar';
 import { AiOutlineMenu } from 'react-icons/ai';
 import { AiOutlineClose } from 'react-icons/ai';
+import SensorCheckBox from '../SensorChart/SensorCheckBox';
 
 const Nav = () => {
   const [toggle, setToggle] = useState(false);
