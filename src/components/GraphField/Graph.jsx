@@ -2,7 +2,7 @@ import styled from 'styled-components';
 import { ResponsiveLine } from '@nivo/line';
 import { blue } from '../../theme';
 
-const Graph = ({ data, unit, color }) => {
+const Graph = ({ data, unit, color, getTargetTime }) => {
   return (
     <GraphWrapper>
       <ResponsiveLine
@@ -49,6 +49,9 @@ const Graph = ({ data, unit, color }) => {
         pointLabelYOffset={-12}
         useMesh={true}
         legends={[]}
+        onClick={e => {
+          getTargetTime(e.data.x);
+        }}
       />
     </GraphWrapper>
   );
