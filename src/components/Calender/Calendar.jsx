@@ -1,12 +1,32 @@
 import styled from 'styled-components';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 import calendarBlue from '../../assets/img/calendar/calendarBlue.png';
 import { blue, pearl } from '../../theme';
+import { useNavigate } from 'react-router-dom';
 
 const Calendar = () => {
+  const navigate = useNavigate();
   const [date, setDate] = useState(new Date());
+
+  useEffect(() => {
+    navigate('/graph/target?' + calendarQuery(date));
+  }, [date]);
+
+  const calendarQuery = tagetDate => {
+    const year = tagetDate.getFullYear();
+    const month = ('0' + (tagetDate.getMonth() + 1)).slice(-2);
+    const yesterDay = ('0' + (tagetDate.getDate() - 1)).slice(-2);
+    const day = ('0' + tagetDate.getDate()).slice(-2);
+    const yesterDateString = year + '-' + month + '-' + yesterDay;
+    const dateString = year + '-' + month + '-' + day;
+    const startQuery = `start=${yesterDateString}`;
+    const endQuery = `end=${dateString}`;
+
+    return startQuery + '&' + endQuery;
+  };
+
   return (
     <CalendarBlock>
       <img className='calendar-icon' src={calendarBlue} />

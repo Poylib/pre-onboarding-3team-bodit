@@ -11,7 +11,7 @@ function App() {
       <Nav />
       <Routes>
         <Route path='/' element={<SensorList />} />
-        <Route path='/graph' element={<GraphScreen />} />
+        <Route path='/graph/target' element={<GraphScreen />} />
       </Routes>
     </>
   );

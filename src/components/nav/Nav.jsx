@@ -31,7 +31,7 @@ const Nav = props => {
           {/* 로고밑콘텐츠영역 */}
           <div className='header-content-inner-box'>
             <div className='calendar-inner-box'>
-              {location.pathname === '/graph' && (
+              {location.pathname === '/graph/target' && (
                 <div className='calender-btn'>
                   <Calendar />
                 </div>
@@ -43,7 +43,7 @@ const Nav = props => {
                   <NavLink to='/'>SensorList</NavLink>
                 </li>
                 <li>
-                  <NavLink to='/graph'>GraphScreen</NavLink>
+                  <NavLink to='/graph/target'>GraphScreen</NavLink>
                 </li>
               </ul>
 
@@ -63,7 +63,7 @@ const Nav = props => {
                   <NavLink to='/'>SensorList</NavLink>
                 </li>
                 <li>
-                  <NavLink to='/graph'>GrphScreen</NavLink>
+                  <NavLink to='/graph/target'>GrphScreen</NavLink>
                 </li>
               </ul>
 
