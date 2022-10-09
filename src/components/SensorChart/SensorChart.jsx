@@ -202,7 +202,6 @@ const SensorChartBlock = styled.div`
     position: -webkit-sticky;
     position: sticky;
     top: 0;
-    overflow: hidden;
     line-height: 30px;
     height: 30px;
     background-color: #ffffff;
@@ -213,5 +212,8 @@ const SensorChartBlock = styled.div`
         margin-right: 5px;
       }
     }
+  }
+  @media screen and (max-width: 1875px) {
+    height: 700px;
   }
 `;

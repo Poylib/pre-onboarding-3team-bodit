@@ -1,12 +1,10 @@
 import styled from 'styled-components';
-import { useContext, useRef } from 'react';
+import { useContext } from 'react';
 import { blue, pearl } from '../../theme';
 import { CheckboxContext } from '../../App';
 
 const SensorCheckBox = () => {
   const { checkedArray, setCheckedArray } = useContext(CheckboxContext);
-
-  const ref = useRef();
 
   const radioHandler = (type, checkEl) => {
     const condition = {
