@@ -5,8 +5,10 @@ import Graph from './Graph';
 import { blue } from '../../theme';
 import Bounce from 'react-reveal/Bounce';
 import { AiFillQuestionCircle } from 'react-icons/ai';
+import { useLocation } from 'react-router-dom';
 
 const GraphField = () => {
+  const location = useLocation();
   const [tempData, setTempData] = useState([]);
   const [humidityData, setHumidityData] = useState([]);
   const [pressureData, setPressureData] = useState([]);
@@ -22,7 +24,7 @@ const GraphField = () => {
         } = await axios.get(
           targetTimeQuery
             ? `https://api.thingspeak.com/channels/1348864/feeds.json?api_key=6SKW0U97IPV2QQV9&${targetTimeQuery}`
-            : `https://api.thingspeak.com/channels/1348864/feeds.json?api_key=6SKW0U97IPV2QQV9&${makeDateRangeQuery()}&results=140&average=60`
+            : `https://api.thingspeak.com/channels/1348864/feeds.json?api_key=6SKW0U97IPV2QQV9&${location.search.replace('?', '')}&results=140&average=60`
         );
         setTempData([{ id: channel.field1, data: extract('field1', feeds) }]);
         setHumidityData([{ id: channel.field2, data: extract('field2', feeds) }]);
@@ -33,7 +35,7 @@ const GraphField = () => {
         // loading
       }
     })();
-  }, [targetTimeQuery]);
+  }, [location.search, targetTimeQuery]);
 
   const extract = (graphType, allData) => {
     let graphValue = [];
@@ -49,20 +51,6 @@ const GraphField = () => {
     });
 
     return graphValue;
-  };
-
-  const makeDateRangeQuery = () => {
-    const date = new Date();
-    const year = date.getFullYear();
-    const month = ('0' + (date.getMonth() + 1)).slice(-2);
-    const yesterDay = ('0' + (date.getDate() - 1)).slice(-2);
-    const day = ('0' + date.getDate()).slice(-2);
-    const dateStr = year + '-' + month + '-';
-
-    const startDay = `start=${dateStr + yesterDay}`;
-    const endDay = `end=${dateStr + day}`;
-
-    return startDay + '&' + endDay;
   };
 
   const getTargetTime = time => {
