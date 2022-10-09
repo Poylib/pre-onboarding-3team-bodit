@@ -1,10 +1,15 @@
 import styled from 'styled-components';
 import { useState, useEffect } from 'react';
-import { pearl } from '../../theme';
+
+import { blue, pearl } from '../../theme';
+
 
 const ChartRow = props => {
   const { chartdata, index } = props;
   const [rowArray, setRowArray] = useState([]);
+
+  const [hoverState, setHoverState] = useState(false);
+
 
   useEffect(() => {
     let reasonData = '0x' + chartdata.shadow.disconnReason.toString(16).toUpperCase();
@@ -26,10 +31,18 @@ const ChartRow = props => {
   }, [chartdata]);
 
   return (
-    <RowTr>
+
+    <RowTr onMouseOver={() => setHoverState(true)} onMouseOut={() => setHoverState(false)} hoverOn={hoverState}>
       <th>{index}</th>
       {rowArray.map((rowdata, index) => {
-        return <td key={`${rowArray[0] + index}`}>{rowdata}</td>;
+        if (index === 1 && rowdata <= 20) {
+          return (
+            <td className='lowBattery' key={index + chartdata.thingName}>
+              {rowdata}
+            </td>
+          );
+        }
+        return <td key={index + chartdata.thingName}>{rowdata}</td>;
       })}
     </RowTr>
   );
@@ -39,16 +52,28 @@ export default ChartRow;
 
 const RowTr = styled.tr`
   border: none;
-  line-height: 30px;
+
   border-top: 1px solid #808080;
   border-bottom: 1px solid #808080;
-  background-color: ${pearl};
+  background-color: ${props => {
+    if (props.hoverOn) {
+      return '#a9a9a9';
+    } else if (!props.hoverOn) {
+      return '#ffffff';
+    }
+  }};
+  th {
+    text-align: center;
+    vertical-align: middle;
+  }
   td {
     text-align: center;
     vertical-align: middle;
-    padding: 0 20px 0 20px;
+    padding: 5px 20px 5px 20px;
+    letter-spacing: 0.1em;
   }
-  &:hover {
-    background-color: grey;
+  .lowBattery {
+    color: #ff0000;
+    font-weight: 700;
   }
 `;

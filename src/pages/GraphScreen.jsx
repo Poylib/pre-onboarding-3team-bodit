@@ -2,13 +2,13 @@ import styled from 'styled-components';
 import Nav from '../components/nav/Nav';
 import { blue, pearl } from '../theme';
 
-
-const GraphScreen = () => {
+const GraphScreen = props => {
   return (
     <>
       <StyledGraphScreen>
         <div className='graph-inner-box'>
-          div
+          {/* 1페이지로 레이아웃 가져감 */}
+          {props.children}
         </div>
       </StyledGraphScreen>
     </>

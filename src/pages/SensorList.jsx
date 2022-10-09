@@ -4,8 +4,8 @@ import { blue, pearl } from '../theme';
 const SensorList = () => {
   return (
     <StyledSensor>
-      <div className="sensor-inner-box">
-      <span  >SensorList</span>
+      <div className='sensor-inner-box'>
+        <span>SensorList</span>
       </div>
     </StyledSensor>
   );
@@ -27,8 +27,6 @@ const StyledSensor = styled.div`
     background-color: #ffffffd5;
   }
 
-
-
   /* ============= ======= 1024px ============ ======== */
   @media screen and (max-width: 1024px) {
   }
@@ -39,11 +37,11 @@ const StyledSensor = styled.div`
     margin-top: 250px;
   }
 
-    /* ============= ======= 480px ============ ======== */
+  /* ============= ======= 480px ============ ======== */
   @media screen and (max-width: 480px) {
   }
 
-    /* ============= ======= 378px ============ ======== */
+  /* ============= ======= 378px ============ ======== */
   @media screen and (max-width: 378px) {
   }
 `;

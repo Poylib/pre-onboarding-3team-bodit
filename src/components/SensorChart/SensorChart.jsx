@@ -1,16 +1,22 @@
 import styled from 'styled-components';
 import axios from 'axios';
 import { useEffect, useState } from 'react';
+
 import { BsFillTriangleFill } from 'react-icons/bs';
 import { header } from '../../assets/sensor/header';
 import ChartRow from './ChartRow';
+import GraphScreen from '../../pages/GraphScreen';
 
-const SensorChart = () => {
+const SensorChart = ({ checkedArray }) => {
   const [chartData, setChartData] = useState([]);
   const [loading, setLoading] = useState(false);
   const [optionCheck, setOptionCheck] = useState('');
   const [ascending, setAscending] = useState(true);
+  const [displayData, setDisplayData] = useState([]);
+
+  const checkboxCondition = ['connCardNum', 'fwVer', 'hwVer'];
   let originData = [];
+
   useEffect(() => {
     (async () => {
       setLoading(true);
@@ -18,6 +24,7 @@ const SensorChart = () => {
         const { data } = await axios('/data/sensorInfoList.json');
         setLoading(false);
         setChartData(data);
+        setDisplayData(data);
       } catch (error) {
         console.log(error);
         setLoading(true);
@@ -26,7 +33,67 @@ const SensorChart = () => {
   }, []);
 
   useEffect(() => {
-    if (optionCheck === 'thingName') {
+    let test = [];
+    for (const sensorList of chartData) {
+      let checkboxConditionState = true;
+      let sensorListStateArray = Object.keys(checkedArray);
+      if (sensorListStateArray.includes('thingName')) {
+        if (!sensorList.thingName.includes(checkedArray.thingName) && checkedArray.thingName !== 'all') {
+          continue;
+        }
+      }
+
+      if (sensorListStateArray.includes('batLvl')) {
+        if (checkedArray.batLvl === 'up') {
+          if (sensorList.shadow.batLvl <= 20) {
+            continue;
+          }
+        } else if (checkedArray.batLvl === 'down') {
+          if (sensorList.shadow.batLvl > 20) {
+            continue;
+          }
+        }
+      }
+
+      if (sensorListStateArray.includes('ConnectionState')) {
+        if (checkedArray.ConnectionState === 'connect') {
+          if (!sensorList.shadow.connectedGateway) {
+            continue;
+          }
+        } else if (checkedArray.ConnectionState === 'disconnect') {
+          if (sensorList.shadow.connectedGateway) {
+            continue;
+          }
+        }
+      }
+
+      if (sensorListStateArray.includes('remainData')) {
+        if (checkedArray.remainData === 'up') {
+          if (sensorList.shadow.remainData < 1000) {
+            continue;
+          }
+        }
+      }
+
+      checkboxCondition.some(condition => {
+        if (sensorListStateArray.includes(condition)) {
+          if (!String(sensorList.shadow[condition]).includes(checkedArray[condition]) && checkedArray[condition] !== 'all') {
+            checkboxConditionState = false;
+            return true;
+          }
+        }
+      });
+      if (checkboxConditionState) {
+        test.push(sensorList);
+      } else {
+        continue;
+      }
+    }
+    setDisplayData(test);
+  }, [checkedArray]);
+  
+  useEffect(() => {
+  if (optionCheck === 'thingName') {
       setOptionCheck('');
       setAscending(!ascending);
       if (ascending) {
@@ -86,6 +153,7 @@ const SensorChart = () => {
       console.log(originData);
     }
   }, [optionCheck]);
+
   return (
     <SensorChartBlock>
       <table>
@@ -108,12 +176,15 @@ const SensorChart = () => {
         </tbody>
       </table>
     </SensorChartBlock>
+
   );
 };
 
 export default SensorChart;
 
 const SensorChartBlock = styled.div`
+  height: 100%;
+  overflow: scroll;
   td {
     text-align: center;
   }
@@ -132,5 +203,6 @@ const SensorChartBlock = styled.div`
         margin-right: 5px;
       }
     }
+
   }
 `;
