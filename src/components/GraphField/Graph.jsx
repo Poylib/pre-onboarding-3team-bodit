@@ -61,20 +61,23 @@ export default Graph;
 
 const GraphWrapper = styled.div`
   padding: 10px;
-
-  @media screen and (max-width: 479px) {
-    height: 220px;
+  
+  @media screen and (min-width: 1024px) {
+    height: 280px;
+  }
+  
+  @media screen and (min-width: 768px) and (max-width: 1023px) {
+    height: 260px;
   }
 
   @media screen and (min-width: 480px) and (max-width: 767px) {
     height: 240px;
   }
-
-  @media screen and (min-width: 768px) and (max-width: 1023px) {
-    height: 260px;
+  
+  @media screen and (max-width: 479px) {
+    height: 220px;
   }
 
-  @media screen and (min-width: 1024px) {
-    height: 280px;
-  }
+
+
 `;

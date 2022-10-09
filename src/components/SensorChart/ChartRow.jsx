@@ -1,5 +1,7 @@
 import styled from 'styled-components';
+import { Fade } from 'react-reveal';
 import { useState, useEffect } from 'react';
+import { blue, pearl } from '../../theme';
 
 const ChartRow = props => {
   const { chartdata, index } = props;

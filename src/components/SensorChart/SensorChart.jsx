@@ -4,6 +4,8 @@ import { useEffect, useState, useContext } from 'react';
 import { BsFillTriangleFill } from 'react-icons/bs';
 import { header } from '../../assets/sensor/header';
 import ChartRow from './ChartRow';
+import GraphScreen from '../../pages/GraphScreen';
+import { Fade } from 'react-reveal';
 import { CheckboxContext } from '../../App';
 
 const SensorChart = () => {
@@ -156,6 +158,7 @@ const SensorChart = () => {
 
   return (
     <SensorChartBlock>
+       <Fade top cascade>
       <table>
         <thead className='fixed'>
           <tr>
@@ -175,6 +178,7 @@ const SensorChart = () => {
           })}
         </tbody>
       </table>
+      </Fade>
     </SensorChartBlock>
   );
 };

@@ -57,7 +57,6 @@ const CalendarBlock = styled.div`
     color: ${blue};
     font-weight: 600;
   }
-
   .react-datepicker {
     border: 2px solid ${blue};
     border-radius: 5px;
@@ -68,7 +67,6 @@ const CalendarBlock = styled.div`
   .react-datepicker__navigation-icon::before {
     border-color: ${blue};
   }
-
   .react-datepicker__triangle {
     display: none;
   }
@@ -90,7 +88,6 @@ const CalendarBlock = styled.div`
     background-color: #ffffff;
     border-bottom: none;
   }
-
   .react-datepicker__day--selected {
     color: #ffffff;
     background-color: ${blue};
