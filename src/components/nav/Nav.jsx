@@ -74,46 +74,6 @@ const Nav = () => {
                   <Calendar />
                 </div>
               )}
-              {location.pathname !== '/graph/target' && <SensorCheckBox />}
-
-              {/* 이동메뉴 */}
-              <ul className='menu-list-box'>
-                <li>
-                  <NavLink to='/'>SensorList</NavLink>
-                </li>
-                <li>
-                  <NavLink to='/graph/target'>GraphScreen</NavLink>
-                </li>
-              </ul>
-
-              {/* 모바일 이동메뉴 */}
-              <ul className={toggle == true ? 'mb-menu-list-box-on' : 'mb-menu-list-box'}>
-                <div className='header-logo-box'>
-                  <h1 className='logo-title'>BoDit!</h1>
-                  <span className='close'>
-                    <AiOutlineClose
-                      onClick={() => {
-                        setToggle(!toggle);
-                      }}
-                    />
-                  </span>
-                </div>
-                <li>
-                  <NavLink to='/'>SensorList</NavLink>
-                </li>
-                <li>
-                  <NavLink to='/graph/target'>GrphScreen</NavLink>
-                </li>
-              </ul>
-
-              {/* Export */}
-              {location.pathname === '/graph' && (
-                <div className='export-btn-box'>
-                  <NavLink to='/' className='export-btn'>
-                    EXPORT
-                  </NavLink>
-                </div>
-              )}
             </div>
 
             {/* Export */}
@@ -147,7 +107,7 @@ const NavBlock = styled.header`
     /* 로고영역박스 */
     .header-logo-box {
       width: 100%;
-      height: 50px;
+      /* height: 50px; */
       /* 취소버튼 */
       .close {
         display: none;
