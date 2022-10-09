@@ -12,9 +12,13 @@ const SensorChart = ({ checkedArray }) => {
   const [loading, setLoading] = useState(false);
   const [optionCheck, setOptionCheck] = useState('');
   const [ascending, setAscending] = useState(true);
+
+  // 실제 보여주는 데이터
   const [displayData, setDisplayData] = useState([]);
 
+  // 체크박스 조건 배열
   const checkboxCondition = ['connCardNum', 'fwVer', 'hwVer'];
+
   let originData = [];
 
   useEffect(() => {
@@ -24,6 +28,7 @@ const SensorChart = ({ checkedArray }) => {
         const { data } = await axios('/data/sensorInfoList.json');
         setLoading(false);
         setChartData(data);
+        // 실제 보여주는 데이터에도 data 추가
         setDisplayData(data);
       } catch (error) {
         console.log(error);
@@ -32,6 +37,7 @@ const SensorChart = ({ checkedArray }) => {
     })();
   }, []);
 
+  // 체크박스 필터 - 시작
   useEffect(() => {
     let test = [];
     for (const sensorList of chartData) {
@@ -90,10 +96,11 @@ const SensorChart = ({ checkedArray }) => {
       }
     }
     setDisplayData(test);
-  }, [checkedArray]);
-  
+  }, [optionCheck, checkedArray]);
+  // 체크박스 필터 - 끝
+
   useEffect(() => {
-  if (optionCheck === 'thingName') {
+    if (optionCheck === 'thingName') {
       setOptionCheck('');
       setAscending(!ascending);
       if (ascending) {
@@ -152,39 +159,48 @@ const SensorChart = ({ checkedArray }) => {
     } else {
       console.log(originData);
     }
-  }, [optionCheck]);
+  }, [optionCheck, checkedArray]);
 
   return (
-    <SensorChartBlock>
-      <table>
-        <thead className='fixed'>
-          <tr>
-            {header.map((category, index) => {
-              return (
-                <td className='headline' key={`${category.id + index}`} onClick={() => setOptionCheck(category.id)}>
-                  <span>{category.name}</span>
-                  {category.sort ? '' : <BsFillTriangleFill />}
-                </td>
-              );
+    // 2페이지 레이아웃으로 감싸기 - 시작
+    <GraphScreen>
+      {/* 2페이지 레이아웃으로 감싸기 - 끝 */}
+      <SensorChartBlock>
+        <table>
+          <thead className='fixed'>
+            <tr>
+              {header.map((category, index) => {
+                return (
+                  <td className='headline' key={`${category.id + index}`} onClick={() => setOptionCheck(category.id)}>
+                    <span>{category.name}</span>
+                    {category.sort ? '' : <BsFillTriangleFill />}
+                  </td>
+                );
+              })}
+            </tr>
+          </thead>
+          <tbody>
+            {displayData.map((sensorList, index) => {
+              return <ChartRow key={`${sensorList.thingName + index}`} chartdata={sensorList} index={index} />;
             })}
-          </tr>
-        </thead>
-        <tbody>
-          {chartData.map((sensorList, index) => {
-            return <ChartRow key={`${sensorList.thingName + index}`} chartdata={sensorList} index={index} />;
-          })}
-        </tbody>
-      </table>
-    </SensorChartBlock>
-
+          </tbody>
+        </table>
+      </SensorChartBlock>
+      {/* 2페이지 레이아웃으로 감싸기 - 시작 */}
+    </GraphScreen>
+    // 2페이지 레이아웃으로 감싸기 - 끝
   );
 };
 
 export default SensorChart;
 
 const SensorChartBlock = styled.div`
+  // 스크롤 추가 - 시작
   height: 100%;
+  width: 100%;
   overflow: scroll;
+  // 스크롤 추가 - 끝
+
   td {
     text-align: center;
   }
@@ -203,6 +219,5 @@ const SensorChartBlock = styled.div`
         margin-right: 5px;
       }
     }
-
   }
 `;

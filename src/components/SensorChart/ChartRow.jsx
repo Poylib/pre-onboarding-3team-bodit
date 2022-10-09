@@ -3,13 +3,11 @@ import { useState, useEffect } from 'react';
 
 import { blue, pearl } from '../../theme';
 
-
 const ChartRow = props => {
   const { chartdata, index } = props;
   const [rowArray, setRowArray] = useState([]);
 
   const [hoverState, setHoverState] = useState(false);
-
 
   useEffect(() => {
     let reasonData = '0x' + chartdata.shadow.disconnReason.toString(16).toUpperCase();
@@ -31,7 +29,6 @@ const ChartRow = props => {
   }, [chartdata]);
 
   return (
-
     <RowTr onMouseOver={() => setHoverState(true)} onMouseOut={() => setHoverState(false)} hoverOn={hoverState}>
       <th>{index}</th>
       {rowArray.map((rowdata, index) => {
@@ -51,8 +48,8 @@ const ChartRow = props => {
 export default ChartRow;
 
 const RowTr = styled.tr`
+  width: 100%;
   border: none;
-
   border-top: 1px solid #808080;
   border-bottom: 1px solid #808080;
   background-color: ${props => {
@@ -69,7 +66,7 @@ const RowTr = styled.tr`
   td {
     text-align: center;
     vertical-align: middle;
-    padding: 5px 20px 5px 20px;
+    padding: 5px 18px 5px 18px;
     letter-spacing: 0.1em;
   }
   .lowBattery {
