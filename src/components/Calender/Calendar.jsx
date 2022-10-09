@@ -15,11 +15,20 @@ const Calendar = () => {
   }, [date]);
 
   const calendarQuery = tagetDate => {
+    console.log(tagetDate.getDate());
     const year = tagetDate.getFullYear();
-    const month = ('0' + (tagetDate.getMonth() + 1)).slice(-2);
-    const yesterDay = ('0' + (tagetDate.getDate() - 1)).slice(-2);
     const day = ('0' + tagetDate.getDate()).slice(-2);
-    const yesterDateString = year + '-' + month + '-' + yesterDay;
+    let month = ('0' + (tagetDate.getMonth() + 1)).slice(-2);
+    let yesterDay = ('0' + (tagetDate.getDate() - 1)).slice(-2);
+    let yesterDateString = year + '-' + month + '-' + yesterDay;
+
+    if (tagetDate.getDate() === 1) {
+      const pastMonthDate = new Date(year, tagetDate.getMonth(), 0);
+      const pastMonth = ('0' + (pastMonthDate.getMonth() + 1)).slice(-2);
+      yesterDay = ('0' + pastMonthDate.getDate()).slice(-2);
+      yesterDateString = year + '-' + pastMonth + '-' + yesterDay;
+    }
+
     const dateString = year + '-' + month + '-' + day;
     const startQuery = `start=${yesterDateString}`;
     const endQuery = `end=${dateString}`;

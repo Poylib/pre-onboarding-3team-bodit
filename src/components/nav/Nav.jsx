@@ -17,10 +17,6 @@ const Nav = () => {
   const [fileHeader, setFileHeader] = useState([]);
   const [fileData, setFileData] = useState([]);
 
-  // useEffect(() => {
-  //   makeCsv();
-  // }, [localStorage]);
-
   const makeCsv = () => {
     const graphChannel = JSON.parse(localStorage.getItem('graphChannel'));
     const graphFeeds = JSON.parse(localStorage.getItem('graphFeeds'));

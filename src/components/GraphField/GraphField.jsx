@@ -34,7 +34,6 @@ const GraphField = () => {
             ? `https://api.thingspeak.com/channels/1348864/feeds.json?api_key=6SKW0U97IPV2QQV9&${targetTimeQuery}`
             : `https://api.thingspeak.com/channels/1348864/feeds.json?api_key=6SKW0U97IPV2QQV9&${calendarDate}&results=140&average=60`
         );
-        console.log(`https://api.thingspeak.com/channels/1348864/feeds.json?api_key=6SKW0U97IPV2QQV9&${calendarDate}&results=140&average=60`);
         if (feeds.length > 0) {
           localStorage.setItem('graphChannel', JSON.stringify(channel));
           localStorage.setItem('graphFeeds', JSON.stringify(feeds));
