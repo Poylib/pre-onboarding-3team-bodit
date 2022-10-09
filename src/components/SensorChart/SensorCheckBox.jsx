@@ -138,6 +138,7 @@ const SensorCheckBox = ({ checkedArray, setCheckedArray }) => {
             </div>
           </div>
         </div>
+        <button>button</button>
       </SensorCheckBoxBlock>
     </Nav>
   );

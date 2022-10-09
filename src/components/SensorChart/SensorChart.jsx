@@ -19,8 +19,6 @@ const SensorChart = ({ checkedArray }) => {
   // 체크박스 조건 배열
   const checkboxCondition = ['connCardNum', 'fwVer', 'hwVer'];
 
-  let originData = [];
-
   useEffect(() => {
     (async () => {
       setLoading(true);
@@ -156,8 +154,6 @@ const SensorChart = ({ checkedArray }) => {
       } else {
         setChartData(chartData.sort((a, b) => b.shadow.rssi - a.shadow.rssi));
       }
-    } else {
-      console.log(originData);
     }
   }, [optionCheck, checkedArray]);
 
