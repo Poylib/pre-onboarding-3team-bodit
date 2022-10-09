@@ -1,35 +1,33 @@
 import styled from 'styled-components';
-import Nav from '../components/nav/Nav';
 import { blue, pearl } from '../theme';
 
-
-const GraphScreen = () => {
+const SensorList = () => {
   return (
-    <>
-      <StyledGraphScreen>
-        <div className='graph-inner-box'>
-          div
-        </div>
-      </StyledGraphScreen>
-    </>
+    <StyledSensor>
+      <div className="sensor-inner-box">
+      <span  >SensorList</span>
+      </div>
+    </StyledSensor>
   );
 };
-export default GraphScreen;
+export default SensorList;
 
-const StyledGraphScreen = styled.div`
+const StyledSensor = styled.div`
   width: 80%;
   height: 100vh;
   margin-left: 20%;
   padding: 10px;
   background-image: url('https://cdn.pixabay.com/photo/2019/07/19/12/06/network-4348668_1280.png');
   background-size: cover;
-  .graph-inner-box {
+  .sensor-inner-box {
     width: 100%;
     height: 100%;
     padding: 20px;
     border: 3px solid ${blue};
     background-color: #ffffffd5;
   }
+
+
 
   /* ============= ======= 1024px ============ ======== */
   @media screen and (max-width: 1024px) {
@@ -41,11 +39,11 @@ const StyledGraphScreen = styled.div`
     margin-top: 250px;
   }
 
-  /* ============= ======= 480px ============ ======== */
+    /* ============= ======= 480px ============ ======== */
   @media screen and (max-width: 480px) {
   }
 
-  /* ============= ======= 378px ============ ======== */
+    /* ============= ======= 378px ============ ======== */
   @media screen and (max-width: 378px) {
   }
 `;
