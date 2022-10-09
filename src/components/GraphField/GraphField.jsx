@@ -4,6 +4,7 @@ import styled from 'styled-components';
 import Graph from './Graph';
 import { blue } from '../../theme';
 import Bounce from 'react-reveal/Bounce';
+import { AiFillQuestionCircle } from 'react-icons/ai';
 
 const GraphField = () => {
   const [tempData, setTempData] = useState([]);
@@ -87,10 +88,17 @@ const GraphField = () => {
   return (
     <GraphFieldWrapper>
       <TargetTime>
-        <span>
-          {targetRange[0]}~{targetRange[1]}
-        </span>
-        <button onClick={makeTargetQuery}>적용하기</button>
+        <div className='time-inner-box'>
+          <span className='time'>
+            {targetRange[0]}~{targetRange[1]}
+          </span>
+          <button className='time-btn' onClick={makeTargetQuery}>
+            적용하기
+          </button>
+          <span className='tooltip'>
+            <AiFillQuestionCircle />
+          </span>
+        </div>
       </TargetTime>
       <Bounce>
         <Graph data={tempData} unit={'Temperature (°C)'} color={'black'} getTargetTime={getTargetTime} />
@@ -117,6 +125,23 @@ const GraphFieldWrapper = styled.div`
   padding: 40px;
   border: 3px solid ${blue};
   background-color: #ffffffd5;
+  .time-inner-box {
+    display: flex;
+    justify-content: flex-end;
+    width: 100%;
+    .time {
+      margin-right: 20px;
+      font: bold 30px/1 'apple';
+    }
+    .time-btn {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font: bold 18px/1 'apple';
+      background-color: #ffffff86;
+      border: 1px solid #ddd;
+    }
+  }
 
   @media screen and (max-width: 1024px) {
     display: flex;
