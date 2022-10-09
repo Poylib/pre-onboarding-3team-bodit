@@ -1,5 +1,4 @@
 import styled from 'styled-components';
-
 import SensorChart from '../components/SensorChart/SensorChart';
 
 const SensorPage = () => {

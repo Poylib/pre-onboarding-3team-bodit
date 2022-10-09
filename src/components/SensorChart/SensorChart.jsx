@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import axios from 'axios';
+import { Fade } from 'react-reveal';
 import { useEffect, useState, useContext } from 'react';
 import { BsFillTriangleFill } from 'react-icons/bs';
 import { header } from '../../assets/sensor/header';
@@ -156,25 +157,27 @@ const SensorChart = () => {
 
   return (
     <SensorChartBlock>
-      <table>
-        <thead className='fixed'>
-          <tr>
-            {header.map((category, index) => {
-              return (
-                <td className='headline' key={`${category.id + index}`} onClick={() => setOptionCheck(category.id)}>
-                  <span>{category.name}</span>
-                  {category.sort ? '' : <BsFillTriangleFill />}
-                </td>
-              );
+      <Fade top cascade>
+        <table>
+          <thead className='fixed'>
+            <tr>
+              {header.map((category, index) => {
+                return (
+                  <td className='headline' key={`${category.id + index}`} onClick={() => setOptionCheck(category.id)}>
+                    <span>{category.name}</span>
+                    {category.sort ? '' : <BsFillTriangleFill />}
+                  </td>
+                );
+              })}
+            </tr>
+          </thead>
+          <tbody>
+            {displayData.map((sensorList, index) => {
+              return <ChartRow key={`${sensorList.thingName + index}`} chartdata={sensorList} index={index} />;
             })}
-          </tr>
-        </thead>
-        <tbody>
-          {displayData.map((sensorList, index) => {
-            return <ChartRow key={`${sensorList.thingName + index}`} chartdata={sensorList} index={index} />;
-          })}
-        </tbody>
-      </table>
+          </tbody>
+        </table>
+      </Fade>
     </SensorChartBlock>
   );
 };
@@ -208,5 +211,8 @@ const SensorChartBlock = styled.div`
         font-size: 16px;
       }
     }
+  }
+  @media screen and (max-width: 1875px) {
+    height: 700px;
   }
 `;

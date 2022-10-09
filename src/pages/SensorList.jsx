@@ -39,7 +39,6 @@ const StyledSensor = styled.div`
     width: 100%;
     height: 100%;
     margin-left: 0;
-    margin-top: 250px;
     padding: 10px;
     background-image: url('https://cdn.pixabay.com/photo/2019/07/19/12/06/network-4348668_1280.png');
     background-size: cover;
@@ -52,11 +51,5 @@ const StyledSensor = styled.div`
     }
   }
 
-  /* ============= ======= 480px ============ ======== */
-  @media screen and (max-width: 480px) {
-  }
 
-  /* ============= ======= 378px ============ ======== */
-  @media screen and (max-width: 378px) {
-  }
 `;
