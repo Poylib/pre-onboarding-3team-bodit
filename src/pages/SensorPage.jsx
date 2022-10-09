@@ -10,8 +10,10 @@ const SensorPage = () => {
   return (
     <StyledSensor>
       <SensorChart checkedArray={checkedArray} />
-      <SensorCheckBox checkedArray={checkedArray} setCheckedArray={setCheckedArray} />
-
+      <SensorCheckBox //
+        checkedArray={checkedArray}
+        setCheckedArray={setCheckedArray}
+      />
     </StyledSensor>
   );
 };
@@ -20,4 +22,3 @@ export default SensorPage;
 const StyledSensor = styled.div`
   display: flex;
 `;
-

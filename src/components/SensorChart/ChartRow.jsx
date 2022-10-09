@@ -1,8 +1,6 @@
 import styled from 'styled-components';
 import { useState, useEffect } from 'react';
 
-import { blue, pearl } from '../../theme';
-
 const ChartRow = props => {
   const { chartdata, index } = props;
   const [rowArray, setRowArray] = useState([]);
