@@ -8,7 +8,6 @@ import { AiOutlineMenu } from 'react-icons/ai';
 import { AiOutlineClose } from 'react-icons/ai';
 import SensorCheckBox from '../SensorChart/SensorCheckBox';
 
-
 const Nav = props => {
   const [toggle, setToggle] = useState(false);
   const location = useLocation();
@@ -37,7 +36,7 @@ const Nav = props => {
                   <Calendar />
                 </div>
               )}
-              {location.pathname !== '/graph' && <SensorCheckBox />}
+              </div>
 
               {/* 이동메뉴 */}
               <ul className='menu-list-box'>
@@ -69,6 +68,12 @@ const Nav = props => {
                 </li>
               </ul>
 
+              {/* 체크박스 */}
+              {location.pathname !== '/graph' && (
+                <div className='fillter-inner-box'>
+                  <SensorCheckBox />
+                </div>
+              )}
 
               {/* Export */}
               {location.pathname === '/graph' && (
@@ -80,7 +85,6 @@ const Nav = props => {
               )}
             </div>
           </div>
-        </div>
       </Fade>
     </NavBlock>
   );
@@ -96,7 +100,7 @@ const NavBlock = styled.header`
     top: 0;
     left: 0;
     width: 20%;
-    height: 100vh;
+    height: 100%;
     z-index: 10;
     /* 로고영역박스 */
     .header-logo-box {
@@ -155,7 +159,8 @@ const NavBlock = styled.header`
         flex-direction: column;
         align-items: center;
         width: 100%;
-        height: 60%;
+        height: 15%;
+        margin-bottom: 20px;
         li {
           width: 100%;
           padding: 10px;
@@ -240,10 +245,7 @@ const NavBlock = styled.header`
       }
 
       /* 필터박스 */
-      .fillter-inner-box{
-        position: absolute;
-        top: 35%;
-        left: 15px;
+      .fillter-inner-box {
         width: 90%;
         height: 450px;
         border: 1px solid ${blue};
