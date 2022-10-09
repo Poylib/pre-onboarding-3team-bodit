@@ -1,5 +1,6 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { Fade } from 'react-reveal';
+import { CSVLink } from 'react-csv';
 import { NavLink, useLocation } from 'react-router-dom';
 import styled from 'styled-components';
 import { blue, pearl } from '../../theme';
@@ -7,7 +8,6 @@ import Calendar from '../Calender/Calendar';
 import { AiOutlineMenu } from 'react-icons/ai';
 import { AiOutlineClose } from 'react-icons/ai';
 import SensorCheckBox from '../SensorChart/SensorCheckBox';
-import { CSVLink } from 'react-csv';
 
 const Nav = () => {
   const [toggle, setToggle] = useState(false);
@@ -18,7 +18,6 @@ const Nav = () => {
   const [fileData, setFileData] = useState([]);
 
   const makeCsv = () => {
-    const graphChannel = JSON.parse(localStorage.getItem('graphChannel'));
     const graphFeeds = JSON.parse(localStorage.getItem('graphFeeds'));
     let csvData = [];
 

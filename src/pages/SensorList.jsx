@@ -1,13 +1,16 @@
 import { Fade } from 'react-reveal';
 import styled from 'styled-components';
+import SensorChart from '../components/SensorChart/SensorChart';
 import { blue } from '../theme';
-import SensorPage from './SensorPage';
+
 const SensorList = () => {
   return (
     <Fade>
       <StyledSensor>
         <div className='sensor-inner-box'>
-          <SensorPage />
+          <div>
+            <SensorChart />
+          </div>
         </div>
       </StyledSensor>
     </Fade>
@@ -50,6 +53,4 @@ const StyledSensor = styled.div`
       background-color: #ffffffd5;
     }
   }
-
-
 `;
