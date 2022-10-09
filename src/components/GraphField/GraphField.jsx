@@ -83,7 +83,7 @@ const GraphField = () => {
   };
 
   const makeTargetQuery = () => {
-    const date = calendarDate.split('&')[0].split('=')[1];
+    const date = calendarDate.split('&')[0].split('%')[0].split('=')[1];
 
     const startQuery = `start=${date}%20${targetRange[0]}:00`;
     const endQuery = `end=${date}%20${targetRange[1]}:00`;
