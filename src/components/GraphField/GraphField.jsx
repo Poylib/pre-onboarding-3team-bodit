@@ -44,7 +44,7 @@ const GraphField = () => {
         }
       } catch (error) {
         console.log(error);
-        alert('통신 실패');
+        setIsData(false);
         // loading
       }
     })();
@@ -114,7 +114,7 @@ const GraphField = () => {
           </Bounce>
         </div>
       ) : (
-        <div className='none-graph-field'>데이터가 없습니다. 오늘 날짜 이전으로 설정해주세요.</div>
+        <div className='none-graph-field'>데이터가 없습니다.</div>
       )}
     </GraphFieldWrapper>
   );
