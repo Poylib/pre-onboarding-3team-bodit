@@ -37,6 +37,7 @@ const Nav = props => {
                   <Calendar />
                 </div>
               )}
+              {location.pathname !== '/graph' && <SensorCheckBox />}
 
               {/* 이동메뉴 */}
               <ul className='menu-list-box'>
@@ -70,11 +71,13 @@ const Nav = props => {
 
 
               {/* Export */}
-              <div className='export-btn-box'>
-                <NavLink to='/' className='export-btn'>
-                  EXPORT
-                </NavLink>
-              </div>
+              {location.pathname === '/graph' && (
+                <div className='export-btn-box'>
+                  <NavLink to='/' className='export-btn'>
+                    EXPORT
+                  </NavLink>
+                </div>
+              )}
             </div>
           </div>
         </div>

@@ -1,14 +1,15 @@
 import styled from 'styled-components';
 import axios from 'axios';
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useContext } from 'react';
 
 import { BsFillTriangleFill } from 'react-icons/bs';
 import { header } from '../../assets/sensor/header';
 import ChartRow from './ChartRow';
 import GraphScreen from '../../pages/GraphScreen';
 import { Fade } from 'react-reveal';
+import { CheckboxContext } from '../../App';
 
-const SensorChart = ({ checkedArray }) => {
+const SensorChart = () => {
   const [chartData, setChartData] = useState([]);
   const [loading, setLoading] = useState(false);
   const [optionCheck, setOptionCheck] = useState('');
@@ -19,6 +20,8 @@ const SensorChart = ({ checkedArray }) => {
 
   // 체크박스 조건 배열
   const checkboxCondition = ['connCardNum', 'fwVer', 'hwVer'];
+
+  const { checkedArray, setCheckedArray } = useContext(CheckboxContext);
 
   useEffect(() => {
     (async () => {

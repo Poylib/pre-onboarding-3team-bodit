@@ -1,8 +1,13 @@
 import styled from 'styled-components';
-import Nav from '../nav/Nav';
-import { blue } from '../../theme';
+import { useContext, useRef } from 'react';
+import { blue, pearl } from '../../theme';
+import { CheckboxContext } from '../../App';
 
-const SensorCheckBox = ({ checkedArray, setCheckedArray }) => {
+const SensorCheckBox = () => {
+  const { checkedArray, setCheckedArray } = useContext(CheckboxContext);
+
+  const ref = useRef();
+
   const radioHandler = (type, checkEl) => {
     const condition = {
       [type]: checkEl.currentTarget.value,
@@ -18,129 +23,137 @@ const SensorCheckBox = ({ checkedArray, setCheckedArray }) => {
     }
   };
 
+  const resetHandler = event => {
+    setCheckedArray({});
+    event.target.reset();
+  };
+
   return (
-    <Nav>
-      <SensorCheckBoxBlock>
+    <SensorCheckBoxBlock>
+      <form onSubmit={() => resetHandler()}>
         <div className='scroll'>
           <div className='margined'>
             <span>Sensor ID</span>
             <div className='InputBox'>
-              <div>
+              <label>
                 <input name='thingName' type='radio' value='all' onChange={checkEl => radioHandler('thingName', checkEl)} defaultChecked />
                 <span>전체</span>
-              </div>
-              <div>
+              </label>
+              <label>
                 <input name='thingName' type='radio' value='FHL' onChange={checkEl => radioHandler('thingName', checkEl)} />
                 <span>FHL</span>
-              </div>
-              <div>
+              </label>
+              <label>
                 <input name='thingName' type='radio' value='FHS' onChange={checkEl => radioHandler('thingName', checkEl)} />
                 <span>FHS</span>
-              </div>
+              </label>
             </div>
           </div>
           <div className='margined'>
             <span>Bat.(%)</span>
             <div className='InputBox'>
-              <div>
+              <label>
                 <input name='batLvl' type='radio' value='all' onChange={checkEl => radioHandler('batLvl', checkEl)} defaultChecked />
                 <span>전체</span>
-              </div>
-              <div>
+              </label>
+              <label>
                 <input name='batLvl' type='radio' value='up' onChange={checkEl => radioHandler('batLvl', checkEl)} />
                 <span>20% 초과</span>
-              </div>
-              <div>
+              </label>
+              <label>
                 <input name='batLvl' type='radio' value='down' onChange={checkEl => radioHandler('batLvl', checkEl)} />
                 <span>20% 이하</span>
-              </div>
+              </label>
             </div>
           </div>
           <div className='margined'>
             <span>Connection State</span>
             <div className='InputBox'>
-              <div>
+              <label>
                 <input name='ConnectionState' type='radio' value='all' onChange={checkEl => radioHandler('ConnectionState', checkEl)} defaultChecked />
                 <span>전체</span>
-              </div>
-              <div>
+              </label>
+              <label>
                 <input name='ConnectionState' type='radio' value='connect' onChange={checkEl => radioHandler('ConnectionState', checkEl)} />
                 <span>연결중</span>
-              </div>
-              <div>
+              </label>
+              <label>
                 <input name='ConnectionState' type='radio' value='disconnect' onChange={checkEl => radioHandler('ConnectionState', checkEl)} />
                 <span>연결해제됨</span>
-              </div>
+              </label>
             </div>
           </div>
           <div className='margined'>
             <span>Card No.</span>
             <div className='InputBox'>
-              <div>
+              <label>
                 <input name='connCardNum' type='radio' value='all' onChange={checkEl => radioHandler('connCardNum', checkEl)} defaultChecked />
                 <span>전체</span>
-              </div>
-              <div>
+              </label>
+              <label>
                 <input name='connCardNum' type='radio' value='1' onChange={checkEl => radioHandler('connCardNum', checkEl)} />
                 <span>1</span>
-              </div>
-              <div>
+              </label>
+              <label>
                 <input name='connCardNum' type='radio' value='0' onChange={checkEl => radioHandler('connCardNum', checkEl)} />
                 <span>0</span>
-              </div>
+              </label>
             </div>
           </div>
           <div className='margined'>
             <span>Remain</span>
             <div className='InputBox'>
-              <div>
+              <label>
                 <input name='remainData' type='radio' value='all' onChange={checkEl => radioHandler('remainData', checkEl)} defaultChecked />
                 <span>전체</span>
-              </div>
-              <div>
+              </label>
+              <label>
                 <input name='remainData' type='radio' value='up' onChange={checkEl => radioHandler('remainData', checkEl)} />
                 <span>1000 이상</span>
-              </div>
+              </label>
             </div>
           </div>
           <div className='margined'>
             <span>F/W ver.</span>
             <div className='InputBox'>
-              <div>
+              <label>
                 <input name='fwVer' type='radio' value='all' onChange={checkEl => radioHandler('fwVer', checkEl)} defaultChecked />
                 <span>전체</span>
-              </div>
-              <div>
+              </label>
+              <label>
                 <input name='fwVer' type='radio' value='1.0.0' onChange={checkEl => radioHandler('fwVer', checkEl)} />
                 <span>1.0.0</span>
-              </div>
-              <div>
+              </label>
+              <label>
                 <input name='fwVer' type='radio' value='0.8.2' onChange={checkEl => radioHandler('fwVer', checkEl)} />
                 <span>0.8.2</span>
-              </div>
+              </label>
             </div>
           </div>
           <div className='margined'>
             <span>H/W ver.</span>
             <div className='InputBox'>
-              <div>
+              <label>
                 <input name='hwVer' type='radio' value='all' onChange={checkEl => radioHandler('hwVer', checkEl)} defaultChecked />
                 <span>전체</span>
-              </div>
-              <div>
+              </label>
+              <label>
                 <input name='hwVer' type='radio' value='1.0.0' onChange={checkEl => radioHandler('hwVer', checkEl)} />
                 <span>1.0.0</span>
-              </div>
-              <div>
+              </label>
+              <label>
                 <input name='hwVer' type='radio' value='0.2.0' onChange={checkEl => radioHandler('hwVer', checkEl)} />
                 <span>0.2.0</span>
-              </div>
+              </label>
             </div>
           </div>
+          <button>
+            <span>reset</span>
+          </button>
         </div>
-        <button>button</button>
-      </SensorCheckBoxBlock>
-      </Nav>
+      </form>
+    </SensorCheckBoxBlock>
+
   );
 };
 
@@ -150,6 +163,8 @@ const SensorCheckBoxBlock = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
+  border-top: 1px solid ${blue};
+  border-bottom: 1px solid ${blue};
   color: ${blue};
   .margined {
     margin-bottom: 15px;
@@ -173,30 +188,71 @@ const SensorCheckBoxBlock = styled.div`
     span {
       margin-right: 0.5em;
     }
-    /* ============= ======= 1484px ============ ======== */
-    @media screen and (max-width: 1484px) {
-      flex-direction: column;
-      align-items: flex-start;
-    }
   }
   .scroll {
-    /* ============= ======= 1484px ============ ======== */
-    @media screen and (max-width: 1484px) {
-      height: 450px;
-    }
-  }
-
-  /* ============= ======= 1484px ============ ======== */
-  @media screen and (max-width: 1484px) {
-    overflow: scroll;
-  }
-
-  /* ============= ======= 378px ============ ======== */
-  @media screen and (max-width: 378px) {
+    margin: 1.5vh 0 1.5vh 0;
   }
   label {
     display: flex;
     align-items: center;
+  }
+  button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0 auto;
+    width: 80px;
+    height: 30px;
+    background: ${blue};
+    border-radius: 50px;
+    border: none;
+    font: bold 20px/1 'Pacifico';
+    color: ${pearl};
+    cursor: pointer;
+  }
+
+  @media screen and (max-width: 1400px) {
+    overflow: scroll;
+    .InputBox {
+      font-size: 0.58em;
+      [type='radio'] {
+        vertical-align: middle;
+        appearance: none;
+        border: max(2px, 0.1em) solid ${blue};
+        border-radius: 50%;
+        width: 1em;
+        height: 1em;
+      }
+    }
+    .scroll {
+      height: 450px;
+    }
+  }
+
+  @media screen and (max-width: 890px) {
+    height: 100%;
+    .InputBox {
+      font-size: 1em;
+      [type='radio'] {
+        vertical-align: middle;
+        appearance: none;
+        border: max(2px, 0.1em) solid ${blue};
+        border-radius: 50%;
+        width: 1em;
+        height: 1em;
+      }
+      [type='radio']:checked {
+        border: 0.4em solid white;
+      }
+    }
+    .scroll {
+      display: flex;
+      align-items: baseline;
+      flex-direction: row;
+      color: white;
+      width: 1.3em;
+      height: 1.3em;
+    }
   }
 `;
 
