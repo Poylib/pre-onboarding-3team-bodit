@@ -34,15 +34,20 @@ const GraphField = () => {
             : `https://api.thingspeak.com/channels/1348864/feeds.json?api_key=6SKW0U97IPV2QQV9&${calendarDate}&results=140&average=60`
         );
         if (feeds.length > 0) {
+          localStorage.setItem('graphChannel', JSON.stringify(channel));
+          localStorage.setItem('graphFeeds', JSON.stringify(feeds));
           setTempData([{ id: channel.field1, data: extract('field1', feeds) }]);
           setHumidityData([{ id: channel.field2, data: extract('field2', feeds) }]);
           setPressureData([{ id: channel.field3, data: extract('field3', feeds) }]);
           setIsData(true);
         } else {
+          localStorage.setItem('graphChannel', JSON.stringify({}));
+          localStorage.setItem('graphFeeds', JSON.stringify({}));
           setIsData(false);
         }
       } catch (error) {
-        console.log(error);
+        localStorage.setItem('graphChannel', JSON.stringify({}));
+        localStorage.setItem('graphFeeds', JSON.stringify({}));
         setIsData(false);
         // loading
       }
@@ -77,7 +82,7 @@ const GraphField = () => {
   };
 
   const makeTargetQuery = () => {
-    const date = calendarDate.split('&')[0].split('=')[1];
+    const date = calendarDate.split('&')[0].split('%')[0].split('=')[1];
 
     const startQuery = `start=${date}%20${targetRange[0]}:00`;
     const endQuery = `end=${date}%20${targetRange[1]}:00`;
@@ -109,7 +114,7 @@ const GraphField = () => {
             <Graph data={humidityData} unit={'Humidity (%)'} color={'red'} getTargetTime={getTargetTime} />
           </Bounce>
           <Bounce delay={1000}>
-            <Graph data={pressureData} unit={'pressure (hPa)'} color={'aqua'} getTargetTime={getTargetTime} />
+            <Graph data={pressureData} unit={'Pressure (hPa)'} color={'aqua'} getTargetTime={getTargetTime} />
           </Bounce>
         </div>
       ) : (
