@@ -6,9 +6,8 @@ import { blue, pearl } from '../../theme';
 import Calendar from '../Calender/Calendar';
 import { AiOutlineMenu } from 'react-icons/ai';
 import { AiOutlineClose } from 'react-icons/ai';
-import SensorCheckBox from '../SensorChart/SensorCheckBox';
 
-const Nav = props => {
+const Nav = () => {
   const [toggle, setToggle] = useState(false);
   const location = useLocation();
 
@@ -36,6 +35,7 @@ const Nav = props => {
                   <Calendar />
                 </div>
               )}
+              {location.pathname !== '/graph/target' && <SensorCheckBox />}
 
               {/* 이동메뉴 */}
               <ul className='menu-list-box'>
@@ -68,11 +68,13 @@ const Nav = props => {
               </ul>
 
               {/* Export */}
-              <div className='export-btn-box'>
-                <NavLink to='/' className='export-btn'>
-                  EXPORT
-                </NavLink>
-              </div>
+              {location.pathname === '/graph' && (
+                <div className='export-btn-box'>
+                  <NavLink to='/' className='export-btn'>
+                    EXPORT
+                  </NavLink>
+                </div>
+              )}
             </div>
           </div>
         </div>
