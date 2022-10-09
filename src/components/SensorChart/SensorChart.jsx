@@ -23,7 +23,7 @@ const SensorChart = () => {
   useEffect(() => {
     (async () => {
       try {
-        const { data } = await axios('/data/sensorInfoList.json');
+        const { data } = await axios('./data/sensorInfoList.json');
         setChartData(data);
         // 실제 보여주는 데이터에도 data 추가
         setDisplayData(data);
