@@ -88,6 +88,7 @@ export default Nav;
 const NavBlock = styled.header`
   @import url('https://fonts.googleapis.com/css2?family=Pacifico&display=swap');
   position: relative;
+  z-index: 10;
 
   .header-inner-box {
     position: fixed;
